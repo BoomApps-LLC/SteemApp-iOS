@@ -127,7 +127,7 @@ extension RootViewController: InterfaceCoordinator {
     }
     
     func logedOut() {
-        if let topViewController = self.childViewControllers.last as? PagesViewController {
+        if let topViewController = self.childViewControllers.last as? TabsViewController {
             let loginViewController = LoginViewController(interfaceCoordinator: self)
             self.cycle(from: topViewController, to: loginViewController)
             self.tabsViewController = nil

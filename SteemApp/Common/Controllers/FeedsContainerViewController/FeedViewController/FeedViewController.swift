@@ -115,19 +115,13 @@ class FeedViewController: UIViewController, Page {
         do {
             let html = convertMarkdownToHtml(txt: post.body)
             let doc: Document = try SwiftSoup.parse(html)
-            let txt = try doc.text()
-            return txt
-        } catch Exception.Error(let type, let message) {
-            return ""
+            let linkedTxt = try doc.text()
+            let txt = removeLink(txt: linkedTxt)
+            
+            return try txt.replacing(pattern: "^ ", with: "")
         } catch {
             return ""
         }
-        
-//        let html = convertMarkdownToHtml(txt: post.body)
-//        let txt = removeLink(txt: html)
-//        let clean = convertHtmlToPlainText(html: txt)
-//
-//        return clean
     }
     
     private func convertMarkdownToHtml(txt: String) -> String {
@@ -248,6 +242,11 @@ extension FeedViewController: UICollectionViewDataSource {
         }
     }
     
+    private func reloadPost(type: FeedTypes, permlink: String, author: String, completion: @escaping (Result<Post>) -> ()) {
+        let fs = ServiceLocator.Application.feedService()
+        fs.post(type: type, author: author, permlink: permlink, completion: completion)
+    }
+    
     private func loadProfiles(completion: @escaping () -> ()) {
         let authors = Array(Set(self.items.map({ $0.author })))
         userService.accounts(with: authors) { (res: Result<[Account]>) in
@@ -275,7 +274,26 @@ extension FeedViewController: FeedViewCellDelegate {
     }
     
     func vote(feedViewCell: FeedViewCell, permlink: String, author: String, completion: @escaping (Bool) -> ()) {
-        self.delegate?.vote(feedViewController: self, permlink: permlink, author: author, completion: completion)
+        self.delegate?.vote(feedViewController: self, permlink: permlink, author: author, completion: { sccs in
+            if sccs {
+                let ft = FeedTypes(rawValue: self.identifier)!
+                self.reloadPost(type: ft, permlink: permlink, author: author, completion: { res in
+                    switch res {
+                    case .success(let post):
+                        if let idx = self.items.index(where: { ($0.author == author && $0.permlink == permlink) }) {
+                            self.items[idx] = post
+                            self.collectionView.reloadData()
+                        }
+                        
+                        completion(true)
+                    case .error:
+                        completion(false)
+                    }
+                })
+            } else {
+                completion(false)
+            }
+        })
     }
 }
 

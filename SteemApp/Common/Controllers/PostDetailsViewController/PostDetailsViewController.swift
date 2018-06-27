@@ -28,7 +28,7 @@ class PostDetailsViewController: UIViewController {
     @IBOutlet weak var webViewContainer: UIView!
     @IBOutlet weak var navigationPanelView: UIView!
     @IBOutlet weak var navigationBarTopConstr: NSLayoutConstraint!
-    @IBOutlet weak var activityView: UIVisualEffectView!
+    @IBOutlet weak var activityView: UIView!
     
     private var webView: WKWebView!
     private weak var dataSource: FeedViewCellDataSource?
@@ -65,7 +65,32 @@ class PostDetailsViewController: UIViewController {
         tryParseAutomatic(item: item, otherwise: { item in
             self.parseManualy(item: item)
         })
-
+        
+        updateInfoSection(with: item)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    @IBAction func backAction(_ sender: Any) {
+        self.dismiss(animated: true) {
+            
+        }
+    }
+    
+    @IBAction func infoTotalPayoutValueAction(_ sender: Any) {
+        let permlink = item.permlink
+        let author = item.author
+        
+        activityView.isHidden = false
+        delegate?.vote(postDetailsViewController: self, permlink: permlink, author: author, completion: { sccfl in
+            self.infoTotalPayoutValueButton.isSelected = sccfl
+            self.activityView.isHidden = true
+        })
+    }
+    
+    private func updateInfoSection(with item: Post) {
         if let acc = dataSource?.account(author: item.author), let some_img = acc.profile_image, let img_url = URL(string: some_img) {
             self.infoImageView.kf.setImage(with: img_url)
             
@@ -103,26 +128,6 @@ class PostDetailsViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    @IBAction func backAction(_ sender: Any) {
-        self.dismiss(animated: true) {
-            
-        }
-    }
-    
-    @IBAction func infoTotalPayoutValueAction(_ sender: Any) {
-        let permlink = item.permlink
-        let author = item.author
-        
-        self.infoTotalPayoutValueButton.isSelected = true
-        delegate?.vote(postDetailsViewController: self, permlink: permlink, author: author, completion: { sccfl in
-            self.infoTotalPayoutValueButton.isSelected = sccfl
-        })
-    }
-    
     private func parseManualy(item: Post) {
         let body = item.body.removeBrackets
         let down = Down(markdownString: body)
@@ -152,10 +157,6 @@ class PostDetailsViewController: UIViewController {
                             self.set(content: htmlContent)
                             self.activityView.isHidden = true
                         }
-                        
-//                        DispatchQueue.main.async {
-//                            self.webView.loadHTMLString(htmlContent, baseURL: URL(string: "https://")!)
-//                        }
                     } else {
                         DispatchQueue.main.async {
                             self.activityView.isHidden = true

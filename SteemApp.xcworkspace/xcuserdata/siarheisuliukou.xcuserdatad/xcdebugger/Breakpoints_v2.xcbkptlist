@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SteemApp/Common/Controllers/FeedsContainerViewController/FeedViewController/FeedViewController.swift"
-            timestampString = "551608649.359849"
+            timestampString = "551801798.85315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "170"
             endingLineNumber = "170"
-            landmarkName = "FeedViewController"
-            landmarkType = "21">
+            landmarkName = "pullToRefresh(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

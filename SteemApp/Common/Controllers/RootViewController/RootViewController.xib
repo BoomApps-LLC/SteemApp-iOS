@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RootViewController" customModule="SteemApp" customModuleProvider="target">
+            <connections>
+                <outlet property="feedButton" destination="v6a-Bj-dCc" id="tuy-o1-B9F"/>
+                <outlet property="postButton" destination="Lrm-nX-C5r" id="qgO-uf-xHR"/>
+                <outlet property="profileButton" destination="EyL-7g-Ug0" id="Ih9-aS-4rQ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ycF-8c-W5S">
+                    <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="LxG-no-lzC">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v6a-Bj-dCc">
+                                    <rect key="frame" x="0.0" y="0.0" width="125" height="49"/>
+                                    <state key="normal" image="feed_inactive"/>
+                                    <state key="selected" image="feed_active"/>
+                                    <connections>
+                                        <action selector="feedButtonAction:" destination="-1" eventType="touchUpInside" id="Iac-bp-Onh"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrm-nX-C5r">
+                                    <rect key="frame" x="125" y="0.0" width="125" height="49"/>
+                                    <state key="normal" image="post"/>
+                                    <connections>
+                                        <action selector="postButtonAction:" destination="-1" eventType="touchUpInside" id="c5r-N1-uEw"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EyL-7g-Ug0">
+                                    <rect key="frame" x="250" y="0.0" width="125" height="49"/>
+                                    <state key="normal" image="profile_inactive"/>
+                                    <state key="selected" image="profile_active"/>
+                                    <connections>
+                                        <action selector="profileButtonAction:" destination="-1" eventType="touchUpInside" id="aiP-gD-vB0"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="LxG-no-lzC" secondAttribute="bottom" id="Gc8-DZ-d5U"/>
+                        <constraint firstItem="LxG-no-lzC" firstAttribute="leading" secondItem="ycF-8c-W5S" secondAttribute="leading" id="KcG-lg-T6b"/>
+                        <constraint firstAttribute="height" constant="49" id="OHX-sa-aWL"/>
+                        <constraint firstAttribute="trailing" secondItem="LxG-no-lzC" secondAttribute="trailing" id="akP-NQ-aDS"/>
+                        <constraint firstItem="LxG-no-lzC" firstAttribute="top" secondItem="ycF-8c-W5S" secondAttribute="top" id="zTt-ol-EIq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.53725490196078429" green="0.30196078431372547" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ycF-8c-W5S" firstAttribute="leading" secondItem="uEe-GN-SiU" secondAttribute="leading" id="ARv-9U-784"/>
+                <constraint firstItem="ycF-8c-W5S" firstAttribute="bottom" secondItem="uEe-GN-SiU" secondAttribute="bottom" id="R8K-st-b0T"/>
+                <constraint firstItem="ycF-8c-W5S" firstAttribute="trailing" secondItem="uEe-GN-SiU" secondAttribute="trailing" id="Zys-DF-pyg"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="uEe-GN-SiU"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="feed_active" width="24" height="22"/>
+        <image name="feed_inactive" width="24" height="22"/>
+        <image name="post" width="42" height="33"/>
+        <image name="profile_active" width="26" height="26"/>
+        <image name="profile_inactive" width="26" height="26"/>
+    </resources>
+</document>

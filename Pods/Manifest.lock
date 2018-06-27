@@ -1,0 +1,38 @@
+PODS:
+  - Alamofire (4.6.0)
+  - CryptoSwift (0.8.1)
+  - Down (0.5.1)
+  - KeychainAccess (3.1.0)
+  - Kingfisher (4.6.1)
+  - Moya (10.0.1):
+    - Moya/Core (= 10.0.1)
+  - Moya/Core (10.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - QRCodeReader.swift (8.1.1)
+  - Result (3.2.4)
+  - SwiftSoup (1.7.1)
+
+DEPENDENCIES:
+  - CryptoSwift
+  - Down
+  - KeychainAccess
+  - Kingfisher (~> 4.0)
+  - Moya
+  - QRCodeReader.swift (~> 8.1.1)
+  - SwiftSoup
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  CryptoSwift: 4b07d5b508c1eb67bfa314a727b705f8048a85de
+  Down: 6ace44ecec0c408826342ed420002f39a18e38c3
+  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
+  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
+  Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
+  QRCodeReader.swift: b164a681887de276d405ff02bce854d82cd6360b
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  SwiftSoup: 277f7ef548826e0ca7603a06b30d4a5df3ee0587
+
+PODFILE CHECKSUM: 82884c46fc768d93a660e1610e43a11f3ba23e25
+
+COCOAPODS: 1.4.0

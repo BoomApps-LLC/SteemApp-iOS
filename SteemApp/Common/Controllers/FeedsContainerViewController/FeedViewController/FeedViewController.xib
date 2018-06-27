@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedViewController" customModule="SteemApp" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicatorView" destination="MSg-ws-99N" id="upl-Aj-Rfw"/>
+                <outlet property="bottomActivityContainerView" destination="e3r-mX-Wux" id="pEh-gb-N1A"/>
+                <outlet property="collectionView" destination="ndO-Gc-2A9" id="wil-LY-ZK3"/>
+                <outlet property="progressView" destination="pk1-oa-q2D" id="vIY-aR-fh7"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ndO-Gc-2A9">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" red="0.53725490196078429" green="0.30196078431372547" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kLa-xs-cyQ">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3r-mX-Wux">
+                    <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="GI0-TZ-elw">
+                            <rect key="frame" x="177" y="10" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="8A9-lq-14G"/>
+                        <constraint firstItem="GI0-TZ-elw" firstAttribute="centerY" secondItem="e3r-mX-Wux" secondAttribute="centerY" id="W64-s2-2ry"/>
+                        <constraint firstItem="GI0-TZ-elw" firstAttribute="centerX" secondItem="e3r-mX-Wux" secondAttribute="centerX" id="duE-xe-2da"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pk1-oa-q2D" customClass="ProgressView" customModule="SteemApp" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSg-ws-99N">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="yYi-oU-K6U">
+                            <rect key="frame" x="169" y="315" width="37" height="37"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="yYi-oU-K6U" firstAttribute="centerY" secondItem="MSg-ws-99N" secondAttribute="centerY" id="O08-xU-FkO"/>
+                        <constraint firstItem="yYi-oU-K6U" firstAttribute="centerX" secondItem="MSg-ws-99N" secondAttribute="centerX" id="kWu-Ga-Uf3"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.53725490196078429" green="0.30196078431372547" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="MSg-ws-99N" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0Xn-5E-k0X"/>
+                <constraint firstItem="ndO-Gc-2A9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HH7-01-ZWi"/>
+                <constraint firstAttribute="bottom" secondItem="ndO-Gc-2A9" secondAttribute="bottom" id="JNS-ST-ugn"/>
+                <constraint firstAttribute="bottom" secondItem="pk1-oa-q2D" secondAttribute="bottom" id="K2O-FQ-Rah"/>
+                <constraint firstAttribute="trailing" secondItem="ndO-Gc-2A9" secondAttribute="trailing" id="Li2-8e-GgB"/>
+                <constraint firstAttribute="trailing" secondItem="pk1-oa-q2D" secondAttribute="trailing" id="M54-ZJ-ZI0"/>
+                <constraint firstItem="e3r-mX-Wux" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UHy-LY-vQ8"/>
+                <constraint firstItem="pk1-oa-q2D" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bCc-jR-UjZ"/>
+                <constraint firstItem="pk1-oa-q2D" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eAK-4v-il8"/>
+                <constraint firstAttribute="trailing" secondItem="e3r-mX-Wux" secondAttribute="trailing" id="feF-Q4-EjR"/>
+                <constraint firstItem="ndO-Gc-2A9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jV0-1n-gIf"/>
+                <constraint firstAttribute="bottom" secondItem="MSg-ws-99N" secondAttribute="bottom" id="l4Q-1F-S3A"/>
+                <constraint firstAttribute="trailing" secondItem="MSg-ws-99N" secondAttribute="trailing" id="qN9-HT-d64"/>
+                <constraint firstItem="MSg-ws-99N" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vOV-kp-MQ4"/>
+                <constraint firstAttribute="bottom" secondItem="e3r-mX-Wux" secondAttribute="bottom" id="ykQ-Fz-ERF"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="106.5"/>
+        </view>
+    </objects>
+</document>

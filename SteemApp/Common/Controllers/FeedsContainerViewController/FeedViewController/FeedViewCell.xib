@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FeedViewCellIdentifier" id="gTV-IL-0wX" customClass="FeedViewCell" customModule="SteemApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="473" height="344"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="473" height="344"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mTk-K9-y5v">
+                        <rect key="frame" x="0.0" y="0.0" width="473" height="105"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="105" id="rrh-Qn-H8H"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnI-5P-BK5">
+                        <rect key="frame" x="20" y="116" width="433" height="53"/>
+                        <string key="text">Title
+xzxczx</string>
+                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="22"/>
+                        <color key="textColor" red="0.043137254901960784" green="0.027450980392156862" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uE6-3Q-jB0">
+                        <rect key="frame" x="20" y="173" width="433" height="58"/>
+                        <string key="text">Body
+two
+tree
+f</string>
+                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="15"/>
+                        <color key="textColor" red="0.043137254901960784" green="0.027450980392156862" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_hor_separator" translatesAutoresizingMaskIntoConstraints="NO" id="28l-HQ-7hV">
+                        <rect key="frame" x="20" y="242" width="433" height="1"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Wat-CE-HvT"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8BP-JX-keM">
+                        <rect key="frame" x="20" y="257" width="433" height="73"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SwE-24-FXm">
+                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="G44-7Z-ylN"/>
+                                    <constraint firstAttribute="width" constant="30" id="JzX-do-kt4"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEb-da-YJc">
+                                <rect key="frame" x="39" y="0.0" width="28.5" height="14"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
+                                <color key="textColor" red="0.043137254901960784" green="0.027450980392156862" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 day ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8BZ-pI-gvn">
+                                <rect key="frame" x="39" y="18" width="50" height="14"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
+                                <color key="textColor" red="0.61176470588235299" green="0.59215686274509804" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_vert_separator" translatesAutoresizingMaskIntoConstraints="NO" id="qc5-36-bxB">
+                                <rect key="frame" x="76.5" y="0.0" width="1" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="Diz-35-aPW"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNf-uC-0sE">
+                                <rect key="frame" x="85.5" y="0.0" width="7" height="14"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.38039215686274508" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4e-dd-y61">
+                                <rect key="frame" x="343" y="0.0" width="90" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="Wba-7H-RfS"/>
+                                    <constraint firstAttribute="height" constant="34" id="nDz-a4-Rkv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
+                                <inset key="imageEdgeInsets" minX="-13" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="$0.0" image="feed_upvote" backgroundImage="feed_bcgnd">
+                                    <color key="titleColor" red="0.28627450980392155" green="0.83529411764705885" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="selected" image="feed_upvote_active" backgroundImage="feed_bcgnd_active">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="infoTotalPayoutValueAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Bef-Cv-0ve"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vM-Zj-dlC">
+                                <rect key="frame" x="0.0" y="43" width="70" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="9IH-AH-NZO"/>
+                                    <constraint firstAttribute="height" constant="30" id="Kwq-g7-ySt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
+                                <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="0" image="feed_upvotes">
+                                    <color key="titleColor" red="0.043137254901960784" green="0.027450980392156862" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ls9-GI-FBM">
+                                <rect key="frame" x="181" y="43" width="70" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1ro-9s-ATR"/>
+                                    <constraint firstAttribute="width" constant="70" id="7hJ-Qx-ZQV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
+                                <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="0" image="feed_comments">
+                                    <color key="titleColor" red="0.043137254899999998" green="0.027450980390000001" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-41-ic1">
+                                <rect key="frame" x="363" y="43" width="70" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="5f7-X0-Atb"/>
+                                    <constraint firstAttribute="height" constant="30" id="GcZ-pN-Wvk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="6" maxY="0.0"/>
+                                <state key="normal" title="0" image="feed_repost">
+                                    <color key="titleColor" red="0.043137254899999998" green="0.027450980390000001" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qc5-36-bxB" firstAttribute="leading" secondItem="VEb-da-YJc" secondAttribute="trailing" constant="9" id="1MZ-op-rjM"/>
+                            <constraint firstItem="SwE-24-FXm" firstAttribute="leading" secondItem="8BP-JX-keM" secondAttribute="leading" id="3nY-t8-hav"/>
+                            <constraint firstAttribute="height" constant="73" id="5do-AY-xOB"/>
+                            <constraint firstAttribute="bottom" secondItem="8vM-Zj-dlC" secondAttribute="bottom" id="9gy-zY-3be"/>
+                            <constraint firstItem="VEb-da-YJc" firstAttribute="top" secondItem="8BP-JX-keM" secondAttribute="top" id="BXq-5f-eZQ"/>
+                            <constraint firstItem="SwE-24-FXm" firstAttribute="top" secondItem="8BP-JX-keM" secondAttribute="top" id="Bym-xv-MBk"/>
+                            <constraint firstAttribute="trailing" secondItem="w4e-dd-y61" secondAttribute="trailing" id="HsZ-ol-XSb"/>
+                            <constraint firstAttribute="bottom" secondItem="gJd-41-ic1" secondAttribute="bottom" id="Lae-1v-2R6"/>
+                            <constraint firstItem="8BZ-pI-gvn" firstAttribute="top" secondItem="VEb-da-YJc" secondAttribute="bottom" constant="4" id="LeM-gz-KQb"/>
+                            <constraint firstItem="ls9-GI-FBM" firstAttribute="centerX" secondItem="8BP-JX-keM" secondAttribute="centerX" id="OsZ-DP-24w"/>
+                            <constraint firstItem="8vM-Zj-dlC" firstAttribute="leading" secondItem="8BP-JX-keM" secondAttribute="leading" id="YJ7-A5-yiv"/>
+                            <constraint firstItem="8BZ-pI-gvn" firstAttribute="leading" secondItem="SwE-24-FXm" secondAttribute="trailing" constant="9" id="cDU-cs-YfO"/>
+                            <constraint firstItem="w4e-dd-y61" firstAttribute="top" secondItem="8BP-JX-keM" secondAttribute="top" id="eZ2-Rq-J3k"/>
+                            <constraint firstAttribute="trailing" secondItem="gJd-41-ic1" secondAttribute="trailing" id="j4o-50-Ah9"/>
+                            <constraint firstAttribute="bottom" secondItem="ls9-GI-FBM" secondAttribute="bottom" id="req-12-81F"/>
+                            <constraint firstItem="DNf-uC-0sE" firstAttribute="leading" secondItem="qc5-36-bxB" secondAttribute="leading" constant="9" id="ub1-JK-kqw"/>
+                            <constraint firstItem="VEb-da-YJc" firstAttribute="leading" secondItem="SwE-24-FXm" secondAttribute="trailing" constant="9" id="x0J-hV-s66"/>
+                            <constraint firstItem="DNf-uC-0sE" firstAttribute="top" secondItem="8BP-JX-keM" secondAttribute="top" id="x3I-SX-Qym"/>
+                            <constraint firstItem="qc5-36-bxB" firstAttribute="top" secondItem="8BP-JX-keM" secondAttribute="top" id="yIh-ae-dAe"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yI5-lV-VLB">
+                        <rect key="frame" x="429" y="0.0" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="1aj-DO-2d2"/>
+                            <constraint firstAttribute="height" constant="44" id="BlA-MK-f0g"/>
+                        </constraints>
+                        <state key="normal" image="more"/>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="uE6-3Q-jB0" firstAttribute="top" secondItem="pnI-5P-BK5" secondAttribute="bottom" constant="4" id="0eb-u5-O5Z"/>
+                <constraint firstItem="yI5-lV-VLB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="4a7-AB-yDc"/>
+                <constraint firstAttribute="trailing" secondItem="uE6-3Q-jB0" secondAttribute="trailing" constant="20" id="EWU-Q8-4gk"/>
+                <constraint firstAttribute="trailing" secondItem="8BP-JX-keM" secondAttribute="trailing" constant="20" id="LWe-Sf-LLt"/>
+                <constraint firstItem="28l-HQ-7hV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="LbJ-VE-9wf"/>
+                <constraint firstItem="8BP-JX-keM" firstAttribute="top" secondItem="28l-HQ-7hV" secondAttribute="bottom" constant="14" id="MgR-Xa-sa1"/>
+                <constraint firstItem="mTk-K9-y5v" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="NmZ-Vc-Pov"/>
+                <constraint firstItem="mTk-K9-y5v" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="O2B-47-5OE"/>
+                <constraint firstAttribute="trailing" secondItem="yI5-lV-VLB" secondAttribute="trailing" id="S2f-EN-aeb"/>
+                <constraint firstItem="pnI-5P-BK5" firstAttribute="top" secondItem="mTk-K9-y5v" secondAttribute="bottom" constant="11" id="UkB-PT-AhY"/>
+                <constraint firstItem="pnI-5P-BK5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="cH6-f2-U0P"/>
+                <constraint firstAttribute="trailing" secondItem="pnI-5P-BK5" secondAttribute="trailing" constant="20" id="dq4-Io-Mdc"/>
+                <constraint firstItem="uE6-3Q-jB0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="e72-LB-di7"/>
+                <constraint firstAttribute="trailing" secondItem="28l-HQ-7hV" secondAttribute="trailing" constant="20" id="euP-XX-ke0"/>
+                <constraint firstAttribute="bottom" secondItem="8BP-JX-keM" secondAttribute="bottom" constant="14" id="rBp-uq-1Mz"/>
+                <constraint firstItem="28l-HQ-7hV" firstAttribute="top" secondItem="uE6-3Q-jB0" secondAttribute="bottom" constant="11" id="sco-7J-Rb7"/>
+                <constraint firstItem="8BP-JX-keM" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="skP-AZ-zIB"/>
+                <constraint firstAttribute="trailing" secondItem="mTk-K9-y5v" secondAttribute="trailing" id="uRe-oe-GM0"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="473" height="50"/>
+            <connections>
+                <outlet property="bodyLabel" destination="uE6-3Q-jB0" id="ckj-eG-pKS"/>
+                <outlet property="infoChildrenButton" destination="ls9-GI-FBM" id="8UB-x6-E8x"/>
+                <outlet property="infoImageView" destination="SwE-24-FXm" id="GnW-NB-cI3"/>
+                <outlet property="infoNetVotesButton" destination="8vM-Zj-dlC" id="pRs-zy-yv0"/>
+                <outlet property="infoRepliesButton" destination="gJd-41-ic1" id="kvG-sT-whi"/>
+                <outlet property="infoReputationLabel" destination="DNf-uC-0sE" id="MlY-bD-NZB"/>
+                <outlet property="infoTimeLabel" destination="8BZ-pI-gvn" id="87X-BD-8Dw"/>
+                <outlet property="infoTotalPayoutValueButton" destination="w4e-dd-y61" id="6JZ-eN-5BG"/>
+                <outlet property="infoUserNameLabel" destination="VEb-da-YJc" id="x6U-Ih-NS4"/>
+                <outlet property="mainImageView" destination="mTk-K9-y5v" id="o7p-fs-C6V"/>
+                <outlet property="mainImageViewHeight" destination="rrh-Qn-H8H" id="D6B-eu-jUa"/>
+                <outlet property="moreButton" destination="yI5-lV-VLB" id="cDB-Vw-sc5"/>
+                <outlet property="titleLabel" destination="pnI-5P-BK5" id="Glc-BQ-mpW"/>
+            </connections>
+            <point key="canvasLocation" x="25.5" y="52"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="feed_bcgnd" width="16" height="34"/>
+        <image name="feed_bcgnd_active" width="90" height="34"/>
+        <image name="feed_comments" width="12" height="12"/>
+        <image name="feed_hor_separator" width="314" height="1"/>
+        <image name="feed_repost" width="13" height="12"/>
+        <image name="feed_upvote" width="14" height="14"/>
+        <image name="feed_upvote_active" width="14" height="14"/>
+        <image name="feed_upvotes" width="11" height="7"/>
+        <image name="feed_vert_separator" width="314" height="1"/>
+        <image name="more" width="16" height="5"/>
+    </resources>
+</document>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Steem.js</title>
+</head>
+<body>
+    <H1 id="debug">Loaded...</H1>
+    <script>
+        function showError(e) {
+            document.getElementById("asd").innerHTML = "E: " + e;
+        }
+    </script>
+    <script src="./steem.min.js"></script>
+    <script src="./Imagehoster.bundle.js"></script>
+    <script src="./Buffer.bundle.js"></script>
+    <script>
+        var steemApi = {};
+        steemApi.validateWif = function(wif) {
+            var validQ = false;
+            try {
+                validQ = steem.auth.isWif(wif);
+            } catch(e) {
+                validQ = false;
+            }
+            
+            return validQ;
+        }
+    
+        steemApi.validatePaar = function(key, wif, username) {
+            var handler = function(err, response) {
+                var result = {};
+                
+                if (err) {
+                    result[key] = false;
+                } else {
+                    try {
+                        var pubWif = response[0].posting.key_auths[0][0];
+                        result[key] = steem.auth.wifIsValid(wif, pubWif);
+                    } catch(e) {
+                        result[key] = false;
+                    }
+                }
+                
+                window.webkit.messageHandlers.generalChain.postMessage(result);
+            };
+            
+            steem.api.getAccounts([username], handler);
+        }
+        
+        steemApi.sign = function(hash, wif) {
+            var bufSha = new Buffer.Buffer(hash, 'hex');
+            var sig = Imagehoster.Signature.signBufferSha256(bufSha, wif)
+            
+            //window.webkit.messageHandlers.signChain.postMessage(sig.toHex());
+            return sig.toHex()
+        }
+    
+        steemApi.broadcastVote = function(key, wif, voter, author, permlink, weight) {
+            var handler = function(err, response){
+                var result = {};
+                if (err) {
+                    result[key] = false;
+                } else {
+                    result[key] = true;
+                }
+                
+                window.webkit.messageHandlers.generalChain.postMessage(result);
+            };
+            
+            
+            steem.broadcast.vote(wif, voter, author, permlink, weight, handler);
+        }
+        
+        steemApi.broadcastSend = function(key, wif, optionsQ, voteQ, parent_permlink, author, permlink, title, body, json_metadata, max_accepted_payout, percent_steem_dollars) {
+            var handler = function(err, response){
+                var result = {};
+                if (err) {
+                    result[key] = false;
+                } else {
+                    result[key] = true;
+                }
+                
+                window.webkit.messageHandlers.generalChain.postMessage(result);
+            };
+            
+            var operations = [];
+            operations.push(['comment', {
+                                 parent_author: '',
+                                 parent_permlink: parent_permlink,//'user',
+                                 author: author,
+                                 permlink: permlink,
+                                 title: title,
+                                 body: body,
+                                 json_metadata: json_metadata
+                             }]);
+            
+            if (optionsQ) {
+                operations.push(['comment_options', {
+                                   author: author,
+                                   permlink: permlink,
+                                   max_accepted_payout: max_accepted_payout,
+                                   percent_steem_dollars: percent_steem_dollars,
+                                   allow_votes: true,
+                                   allow_curation_rewards: true,
+                                   extensions: []
+                                 }]);
+            }
+            
+            if (voteQ) {
+                operations.push(['vote', {
+                                 voter: author,
+                                 author: author,
+                                 permlink: permlink,
+                                 weight: 10000
+                                 }]
+                                );
+            }
+
+            steem.broadcast.send({
+                         extensions: [],
+                         operations: operations
+                     }, [wif], handler);
+        }
+    </script>
+</body>
+</html>

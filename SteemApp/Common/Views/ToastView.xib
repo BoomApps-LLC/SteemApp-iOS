@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="sFe-sQ-SbR" customClass="ToastView" customModule="SteemApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="194"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alert_background" translatesAutoresizingMaskIntoConstraints="NO" id="QuC-Vd-XxA">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="194"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="success_alerticon" translatesAutoresizingMaskIntoConstraints="NO" id="LLW-yE-8Vh">
+                    <rect key="frame" x="174.5" y="25" width="26" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="26" id="vk5-sP-2c6"/>
+                        <constraint firstAttribute="width" constant="26" id="xuu-gF-a49"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxT-A7-hgC">
+                    <rect key="frame" x="20" y="66" width="335" height="108"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                    <color key="textColor" red="0.25490196079999999" green="0.28627450980000002" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="QuC-Vd-XxA" firstAttribute="centerY" secondItem="sFe-sQ-SbR" secondAttribute="centerY" id="8TJ-iM-Fya"/>
+                <constraint firstAttribute="trailing" secondItem="QuC-Vd-XxA" secondAttribute="trailing" id="BJ9-MQ-zLp"/>
+                <constraint firstAttribute="bottom" secondItem="xxT-A7-hgC" secondAttribute="bottom" constant="20" id="Bpl-Fr-W3Q"/>
+                <constraint firstAttribute="bottom" secondItem="QuC-Vd-XxA" secondAttribute="bottom" id="CCb-Oc-inM"/>
+                <constraint firstItem="LLW-yE-8Vh" firstAttribute="top" secondItem="sFe-sQ-SbR" secondAttribute="top" constant="25" id="FdS-zI-NN4"/>
+                <constraint firstItem="xxT-A7-hgC" firstAttribute="top" secondItem="LLW-yE-8Vh" secondAttribute="bottom" constant="15" id="Grv-vO-ahF"/>
+                <constraint firstAttribute="trailing" secondItem="xxT-A7-hgC" secondAttribute="trailing" constant="20" id="PmV-ow-Hq4"/>
+                <constraint firstItem="QuC-Vd-XxA" firstAttribute="centerX" secondItem="sFe-sQ-SbR" secondAttribute="centerX" id="Yrf-ix-VyH"/>
+                <constraint firstItem="QuC-Vd-XxA" firstAttribute="top" secondItem="sFe-sQ-SbR" secondAttribute="top" id="eed-hx-NJC"/>
+                <constraint firstItem="LLW-yE-8Vh" firstAttribute="centerX" secondItem="sFe-sQ-SbR" secondAttribute="centerX" id="lBQ-WR-Olj"/>
+                <constraint firstItem="xxT-A7-hgC" firstAttribute="leading" secondItem="sFe-sQ-SbR" secondAttribute="leading" constant="20" id="lzv-kC-ilK"/>
+                <constraint firstItem="QuC-Vd-XxA" firstAttribute="leading" secondItem="sFe-sQ-SbR" secondAttribute="leading" id="miU-3t-lKx"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="0bF-rq-WLY"/>
+            <connections>
+                <outlet property="toastViewImg" destination="LLW-yE-8Vh" id="Ewz-cH-7qb"/>
+                <outlet property="toastViewLabel" destination="xxT-A7-hgC" id="rbo-s8-Gmj"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="191"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="alert_background" width="27" height="27"/>
+        <image name="success_alerticon" width="26" height="26"/>
+    </resources>
+</document>

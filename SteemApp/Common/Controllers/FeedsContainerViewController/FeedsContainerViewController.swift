@@ -154,14 +154,17 @@ extension FeedsContainerViewController: FeedViewControllerDelegate {
                             completion(sccflQ)
                             break
                         case .error:
+                            completion(false)
                             self.interfaceCoordinator?.alert(presenter: self, style: .error("Something went wrong"))
                         }
                     })
                     
                 } else {
+                    completion(false)
                     self.interfaceCoordinator?.alert(presenter: self, style: .error("Credentials can't be fetched"))
                 }
             case .error:
+                completion(false)
                 self.interfaceCoordinator?.alert(presenter: self, style: .error("Credentials can't be fetched"))
             }
         }

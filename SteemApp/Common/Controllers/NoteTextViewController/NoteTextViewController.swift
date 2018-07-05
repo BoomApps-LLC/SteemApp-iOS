@@ -33,7 +33,6 @@ class NoteTextViewController: UIViewController {
         let b = (SharedNote.shared.note?.body ?? "")
         richTextEditorController.setHTML(b)
         activateNextButtonIfNeeded(with: b)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -9,49 +9,23 @@
 import UIKit
 import Platform
 
-protocol Navigatable {
-    func dismiss(_ viewController: UIViewController, completion: (() -> ())?)
-    func back(_ viewController: UIViewController)
-    func cycle(from oldViewController: UIViewController, to newViewController: UIViewController)
-}
-
-protocol CoordinatorRespondable {
-    var interfaceCoordinator: InterfaceCoordinator { get }
-}
-
-protocol InterfaceCoordinator: class, Navigatable {
-    func onboarding(contentType: OnboardingShowingContentType, onclose: (() -> ())?)
-    func logedIn()
-    func logedOut()
-    func newtitle()
-    func newnote(_ previousViewController: UIViewController)
-    func tags(_ previousViewController: UIViewController)
-    func rewards(_ previousViewController: UIViewController)
-    func alert(presenter viewController: UIViewController, style: AlertViewController.AlertViewControllerStyle)
-    func witnessVote(presenter viewController: UIViewController, onClose: @escaping () -> (), onVote: @escaping () -> ())
-    func signup()
-    func vote(completion: @escaping () -> ())
-    
-    func showActivityIndicator(_ completion: (() -> Swift.Void)?)
-    func hideActivityIndicator(_ completion: (() -> Swift.Void)?)
-    
-    func showPostingProgress(_ completion: (() -> Swift.Void)?)
-    func hidePostingProgress(_ completion: (() -> Swift.Void)?)
-    func updatePostingProgress(status: UploadProgressStatus)
-    
-    func highlightButton(at index: Int)
-}
-
-private protocol InterfaceFlow {
-    func loadInterface()
-}
-
 class RootViewController: UIViewController {
     @IBOutlet weak var feedButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
     
+    weak var delegate: RootViewControllerDelegate?
+    
     private var tabsViewController: TabsViewController?
+    
+    init(rootViewControllerDelegate: RootViewControllerDelegate) {
+        self.delegate = rootViewControllerDelegate
+        super.init(nibName: "RootViewController", bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -183,12 +157,8 @@ extension RootViewController: InterfaceCoordinator {
         previousViewController.navigationController?.pushViewController(rewardsViewController, animated: true)
     }
     
-    func alert(presenter viewController: UIViewController,
-               style: AlertViewController.AlertViewControllerStyle) {
-        let alertViewController = AlertViewController(interfaceCoordinator: self, style: style)
-        
-        alertViewController.modalPresentationStyle = .custom
-        viewController.present(alertViewController, animated: false, completion: nil)
+    func alert(presenter viewController: UIViewController, style: AlertViewController.AlertViewControllerStyle) {
+        delegate?.showToats(duration: 3, style: style)
     }
     
     func witnessVote(presenter viewController: UIViewController, onClose: @escaping () -> (), onVote: @escaping () -> ()) {
@@ -271,7 +241,7 @@ extension RootViewController: Navigatable {
     }
 }
 
-extension RootViewController: InterfaceFlow {
+extension RootViewController {
     func loadInterface() {
         let userService = ServiceLocator.Application.userService()
         userService.logedQ { result in

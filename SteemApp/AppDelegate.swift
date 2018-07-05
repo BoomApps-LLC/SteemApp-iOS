@@ -12,15 +12,19 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    private var toastViewBottom: NSLayoutConstraint!
+    private var toastView: ToastView!
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let rootContainerViewController = RootViewController()
+        let rootContainerViewController = RootViewController(rootViewControllerDelegate: self)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = rootContainerViewController
         self.window?.makeKeyAndVisible()
+        
+        setupToastView(window: window!)
         
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = UIColor.white
@@ -57,21 +61,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate: InterfaceFlowPresentable {
-    func presentLoginInterface(inside window: UIWindow?) {
-        let loginViewController = LoginViewController.init(nibName: "LoginViewController", bundle: nil)
-        
-        window?.rootViewController = nil
-        window?.rootViewController = loginViewController
-        window?.makeKeyAndVisible()
+extension AppDelegate: RootViewControllerDelegate {
+    private func setupToastView(window: UIWindow) {
+        if let tv = Bundle.main.loadNibNamed("ToastView", owner: self, options: nil)?.first as? ToastView {
+            toastView = tv
+            toastView.translatesAutoresizingMaskIntoConstraints = false
+            window.addSubview(toastView)
+            
+            
+            toastViewBottom = window.bottomAnchor.constraint(equalTo: toastView.bottomAnchor, constant: -110)
+            
+            window.leftAnchor.constraint(equalTo: toastView.leftAnchor, constant: -15).isActive = true
+            window.rightAnchor.constraint(equalTo: toastView.rightAnchor, constant: 15).isActive = true
+            toastViewBottom.isActive = true
+        }
     }
     
-    func presentMainInterface(inside window: UIWindow?) {
-        let loginViewController = LoginViewController.init(nibName: "LoginViewController", bundle: nil)
+    func showToats(duration: TimeInterval = 4, style: AlertViewController.AlertViewControllerStyle) {
+        showToast(style: style, animated: true)
         
-        window?.rootViewController = nil
-        window?.rootViewController = loginViewController
-        window?.makeKeyAndVisible()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+            self.hideToast(animated: true)
+        }
+    }
+    
+    private func showToast(style: AlertViewController.AlertViewControllerStyle, animated: Bool) {
+        toastViewBottom.constant = 60
+        switch style {
+        case .error(let txt):
+            self.toastView.toastViewLabel.text = txt
+            self.toastView.toastViewImg.image = #imageLiteral(resourceName: "fail_alerticon")
+        case .message(msg: let msg, onDismiss: let completion):
+            self.toastView.toastViewLabel.text = msg
+            self.toastView.toastViewImg.image = #imageLiteral(resourceName: "success_alerticon")
+            completion()
+        }
+        
+        UIView.animate(withDuration: animated ? 0.5 : 0.0) {
+            self.toastView.superview?.layoutIfNeeded()
+        }
+    }
+    
+    private func hideToast(animated: Bool) {
+        toastViewBottom.constant = -110
+        
+        UIView.animate(withDuration: animated ? 0.5 : 0.0, animations: {
+            self.toastView.superview?.layoutIfNeeded()
+        }) { _ in
+            self.toastView.toastViewLabel.text = ""
+        }
     }
 }
 

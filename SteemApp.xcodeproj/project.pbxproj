@@ -74,7 +74,7 @@
 		978C08992016F4A100638BD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 978C08972016F4A100638BD3 /* LaunchScreen.storyboard */; };
 		978C08A72016F6B400638BD3 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 978C08A52016F6B400638BD3 /* LoginViewController.xib */; };
 		978C08A82016F6B400638BD3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978C08A62016F6B400638BD3 /* LoginViewController.swift */; };
-		978C08AD20187BCB00638BD3 /* InterfaceFlowPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978C08AC20187BCB00638BD3 /* InterfaceFlowPresentable.swift */; };
+		978C08AD20187BCB00638BD3 /* InterfaceFlowNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978C08AC20187BCB00638BD3 /* InterfaceFlowNavigator.swift */; };
 		978C08BC2019826300638BD3 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978C08BB2019826300638BD3 /* RootViewController.swift */; };
 		978C08C3201984D400638BD3 /* FeedsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978C08C1201984D400638BD3 /* FeedsContainerViewController.swift */; };
 		978C08C4201984D400638BD3 /* FeedsContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 978C08C2201984D400638BD3 /* FeedsContainerViewController.xib */; };
@@ -222,6 +222,8 @@
 		97D13E3B20C19AF8007731B7 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D13E3A20C19AF8007731B7 /* ProgressView.swift */; };
 		97D8CFBC2064C03D0038DBF4 /* QRReaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97D8CFBB2064C03D0038DBF4 /* QRReaderView.xib */; };
 		97D8CFBE2064C2550038DBF4 /* QRReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8CFBD2064C2550038DBF4 /* QRReaderView.swift */; };
+		97DF816D20EDD15A007FC195 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DF816C20EDD15A007FC195 /* ToastView.swift */; };
+		97DF816F20EDD16A007FC195 /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97DF816E20EDD16A007FC195 /* ToastView.xib */; };
 		97E50668205793E4008961C0 /* NoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E50667205793E4008961C0 /* NoteService.swift */; };
 		97E5066A205794F8008961C0 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E50669205794F8008961C0 /* Note.swift */; };
 		97EE4A8220D21D3800AC59B1 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97EE4A7520D21D3000AC59B1 /* SF-Pro-Text-Bold.otf */; };
@@ -331,7 +333,7 @@
 		978C089A2016F4A100638BD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		978C08A52016F6B400638BD3 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		978C08A62016F6B400638BD3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		978C08AC20187BCB00638BD3 /* InterfaceFlowPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceFlowPresentable.swift; sourceTree = "<group>"; };
+		978C08AC20187BCB00638BD3 /* InterfaceFlowNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceFlowNavigator.swift; sourceTree = "<group>"; };
 		978C08BB2019826300638BD3 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		978C08C1201984D400638BD3 /* FeedsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsContainerViewController.swift; sourceTree = "<group>"; };
 		978C08C2201984D400638BD3 /* FeedsContainerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedsContainerViewController.xib; sourceTree = "<group>"; };
@@ -492,6 +494,8 @@
 		97D13E3A20C19AF8007731B7 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		97D8CFBB2064C03D0038DBF4 /* QRReaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRReaderView.xib; sourceTree = "<group>"; };
 		97D8CFBD2064C2550038DBF4 /* QRReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRReaderView.swift; sourceTree = "<group>"; };
+		97DF816C20EDD15A007FC195 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		97DF816E20EDD16A007FC195 /* ToastView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		97E50667205793E4008961C0 /* NoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteService.swift; sourceTree = "<group>"; };
 		97E50669205794F8008961C0 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		97EE4A7520D21D3000AC59B1 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
@@ -744,7 +748,7 @@
 		978C08AE20187CB100638BD3 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				978C08AC20187BCB00638BD3 /* InterfaceFlowPresentable.swift */,
+				978C08AC20187BCB00638BD3 /* InterfaceFlowNavigator.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -763,6 +767,7 @@
 		978C08BE2019846F00638BD3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				97DF816B20EDD13C007FC195 /* Views */,
 				97CE4802202B7F12005ED4E9 /* Model */,
 				978C08C52019886800638BD3 /* Utils */,
 				978C08AE20187CB100638BD3 /* Protocols */,
@@ -1162,6 +1167,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		97DF816B20EDD13C007FC195 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				97DF816C20EDD15A007FC195 /* ToastView.swift */,
+				97DF816E20EDD16A007FC195 /* ToastView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A45C2CA248DE498860E76768 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1322,6 +1336,7 @@
 				979CF9A92036AEC900FE91EB /* ZSSunlink.png in Resources */,
 				9781B3ED2054E572005C4FB8 /* ZSSnumblist@3x.png in Resources */,
 				970F54662045E6BE0046764B /* Buffer.bundle.js in Resources */,
+				97DF816F20EDD16A007FC195 /* ToastView.xib in Resources */,
 				979CF9BE2036AEC900FE91EB /* ZSSindent@2x.png in Resources */,
 				979CF9AC2036AEC900FE91EB /* ZSSh6.png in Resources */,
 				979CF9D32036AEC900FE91EB /* ZSSquicklink@2x.png in Resources */,
@@ -1566,11 +1581,12 @@
 				97473B0620202208002D751A /* AlertViewController.swift in Sources */,
 				97CE4804202B7F38005ED4E9 /* SomeNote.swift in Sources */,
 				979CF9EE2036AEC900FE91EB /* HRColorUtil.m in Sources */,
+				97DF816D20EDD15A007FC195 /* ToastView.swift in Sources */,
 				978C08C7201988A900638BD3 /* UIView+Ext.swift in Sources */,
 				979CF9F02036AEC900FE91EB /* ZSSTextView.m in Sources */,
 				970369F120AA8FF3008D4B54 /* FeedViewController.swift in Sources */,
 				978C08BC2019826300638BD3 /* RootViewController.swift in Sources */,
-				978C08AD20187BCB00638BD3 /* InterfaceFlowPresentable.swift in Sources */,
+				978C08AD20187BCB00638BD3 /* InterfaceFlowNavigator.swift in Sources */,
 				97CB9E73202EB71100589812 /* ActivityViewController.swift in Sources */,
 				97CB9E75202F4FB100589812 /* String+Ext.swift in Sources */,
 				979CF9E52036AEC900FE91EB /* ZSSFontsViewController.m in Sources */,

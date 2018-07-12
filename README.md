@@ -39,7 +39,7 @@ Then run `pod install`.
 - Delegate Steem Power
 - Footer templates for posts
 - Post Drafts
-- Sceduled Posts
+- Scheduled Posts
 - Find friends based on interests
 - Post not only photos from library, but directly through phone camera
 - Make transfers to other users

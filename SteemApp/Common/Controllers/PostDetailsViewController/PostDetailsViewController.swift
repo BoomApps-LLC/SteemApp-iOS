@@ -31,17 +31,21 @@ class PostDetailsViewController: UIViewController {
     @IBOutlet weak var activityView: UIView!
     
     private var webView: WKWebView!
+    private weak var interfaceCoordinator: InterfaceCoordinator?
     private weak var dataSource: FeedViewCellDataSource?
-    private let item: Post
-    private var contentOffsetY: CGFloat = 0
-    private let username: String
     private weak var delegate: PostDetailsViewControllerDelegate?
     
-    init(username: String, item: Post, dataSource: FeedViewCellDataSource, delegate: PostDetailsViewControllerDelegate) {
+    private let item: Post
+    private var prevContentOffsetY: CGFloat = 0
+    private let username: String
+    
+    init(username: String, item: Post, dataSource: FeedViewCellDataSource,
+         delegate: PostDetailsViewControllerDelegate, interfaceCoordinator: InterfaceCoordinator?) {
         self.item = item
         self.dataSource = dataSource
         self.delegate = delegate
         self.username = username
+        self.interfaceCoordinator = interfaceCoordinator
         
         super.init(nibName: "PostDetailsViewController", bundle: nil)
     }
@@ -56,16 +60,14 @@ class PostDetailsViewController: UIViewController {
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
+        webView.navigationDelegate = self
         webView.scrollView.delegate = self
         webViewContainer.addSubview(webView)
         webView.flipToBorder()
         
         activityView.isHidden = true
         
-        tryParseAutomatic(item: item, otherwise: { item in
-            self.parseManualy(item: item)
-        })
-        
+        parse(item: item)
         updateInfoSection(with: item)
     }
     
@@ -128,54 +130,19 @@ class PostDetailsViewController: UIViewController {
         }
     }
     
-    private func parseManualy(item: Post) {
+    private func parse(item: Post) {
         let body = item.body.removeBrackets
         let down = Down(markdownString: body)
         let noteBody = try! down.toHTML(DownOptions.safe)
         let htmlContent = "<H1>" + item.title + "</H1>" + noteBody.returnBrackets
+        let brContent = htmlContent
+            .replacingOccurrences(of: "\n", with: "<div style='height:2px;'><br></div>")
+            .replacingOccurrences(of: "&quot;", with: "'")
+            .replacingOccurrences(of: "\\ '", with: "\\'")
         
-        set(content: htmlContent)
-    }
-    
-    private func tryParseAutomatic(item: Post, otherwise: @escaping (Post) -> ()) {
-        let body = item.body.removeBrackets
-        let down = Down(markdownString: body)
-        let noteBody = try! down.toHTML(DownOptions.safe).returnBrackets
-        let clearedBody = removeLink(txt: noteBody)
+        let linkResolved = wrapImageLinks(txt: brContent)
         
-        activityView.isHidden = false
-        
-        if let nu = URL(string: item.url, relativeTo: URL(string: "https://steemit.com")) {
-            let session = URLSession.shared.dataTask(with: nu) { (data, response, error) in
-                if let d = data {
-                    let steemitHtml = String.init(data: d, encoding: String.Encoding.utf8)
-                    let someContent = self.tryExtractFromSteemitcom(noteBody: clearedBody, steemcomHtml: steemitHtml)
-                    
-                    if let htmlContent = someContent {
-                        let htmlContent = "<H1>" + item.title + "</H1>" + htmlContent
-                        DispatchQueue.main.async {
-                            self.set(content: htmlContent)
-                            self.activityView.isHidden = true
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.activityView.isHidden = true
-                            otherwise(item)
-                        }
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.activityView.isHidden = true
-                        otherwise(item)
-                    }
-                }
-            }
-            
-            session.resume()
-        } else {
-            activityView.isHidden = true
-            otherwise(item)
-        }
+        set(content: linkResolved)
     }
     
     private func set(content: String) {
@@ -195,97 +162,41 @@ class PostDetailsViewController: UIViewController {
         }
     }
     
-    private func removeLink(txt: String) -> String {
+    private func wrapImageLinks(txt: String) -> String {
+        // TODO: Remove force unwrap
         var b = txt
         let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
         let matches = detector.matches(in: b, options: [], range: NSRange(location: 0, length: b.utf16.count))
         
+        let linkWithQuoteAtTheEndOrYoutubeQ: (String) -> Bool = {lnk in
+            let det = try? lnk.replacing(pattern: "(\"|\')$", with: "").replacing(pattern: "(youtube\\.com)|(youtu\\.be)", with: "")
+            return (det ?? lnk).count < lnk.count
+        }
+        
+        let imgLinkQ: (String) -> Bool = {lnk in
+            return ((try? lnk.replacing(pattern: ".(?:jpg|gif|png)$", with: "")) ?? lnk).count < lnk.count
+        }
+        
         for match in matches.reversed() {
-            guard let range = Range.init(match.range, in: b) else { continue }
-            b.removeSubrange(range)
+            let someRange = Range.init(match.range, in: b)!
+            let someLink = String(b[someRange])
+            let link = try! someLink.replacing(pattern: "<(\\S+)$", with: "").replacing(pattern: "(\"|\')(\\S+)$", with: "")
+            let nsRange = NSRange.init(location: match.range.location, length: match.range.length - (someLink.count - link.count))
+            let range = Range.init(nsRange, in: b)!
+            let extNsRange = NSRange.init(location: match.range.location, length: match.range.length + 1 - (someLink.count - link.count))
+            let extRange = Range.init(extNsRange, in: b)!
+            let extendedLink = String(b[extRange])
+
+            if linkWithQuoteAtTheEndOrYoutubeQ(extendedLink) == false {
+                if imgLinkQ(link) == true {
+                    b.replaceSubrange(range, with: "<img src=\'\(link)\'/>")
+                } else {
+                    b.replaceSubrange(range, with: "<a href=\'\(link)\'>\(link)</a>")
+                }
+            }
         }
         
         return b
-    }
-}
-
-extension PostDetailsViewController {
-    private func tryExtractFromSteemitcom(noteBody html1: String, steemcomHtml html2: String?) -> String? {
-        guard let html2 = html2 else { return nil }
-        
-        var digests = [String]()
-        
-        // Parse html1
-        do {
-            let doc: Document = try SwiftSoup.parse(html1)
-            if let elements = try doc.body()?.getElementsByTag("p") {
-                for element in elements {
-                    if let d = digest(element: element), d.isEmpty == false {
-                        digests.append(d)
-                    }
-                }
-            }
-        } catch {
-            return nil
-        }
-        
-        // Parse html2
-        let startDocKey = digests.first
-        
-        do {
-            let doc: Document = try SwiftSoup.parse(html2)
-            
-            if let divs = try doc.body()?.getElementsByTag("div").filter({ element -> Bool in
-                return element.children().filter({ $0.tagName() == "div" }).isEmpty
-            }) {
-                for div in divs {
-                    let ps = try div.getElementsByTag("p")
-                    for p in ps {
-                        let dgst = digest(element: p)
-                        
-                        if dgst == startDocKey, let parentDiv = p.parent() {
-                            let parentHtml = try parentDiv.outerHtml()
-                            let siblingsHtml = try parentDiv.siblingElements().outerHtml()
-                            
-                            
-                            let all = Element.init(Tag.init("div"), "steemit.com")
-                            
-                            try all.append(parentHtml)
-                            try all.append(siblingsHtml)
-                            
-                            let body = try all.outerHtml()
-                            return body
-                            
-                            //try doc.body()?.children().forEach({try $0.remove() })
-                            //try doc.body()?.append(body)
-                            
-                            //return try doc.outerHtml()
-                        }
-                    }
-                }
-            }
-        } catch {
-            return nil
-        }
-        
-        return nil
-    }
-    
-    private func digest(element: Element) -> String? {
-        do {
-            var txt = try element.text()
-            let rexexpr = try NSRegularExpression(pattern: "\\W+", options: NSRegularExpression.Options.caseInsensitive)
-            let matches = rexexpr.matches(in: txt, options: [], range: NSRange(location: 0, length: txt.utf16.count))
-            
-            for match in matches.reversed() {
-                guard let range = Range.init(match.range, in: txt) else { continue }
-                txt.removeSubrange(range)
-            }
-            
-            return txt
-        } catch {
-            return nil
-        }
     }
 }
 
@@ -303,24 +214,50 @@ extension String {
     }
 }
 
-extension PostDetailsViewController: WKUIDelegate {
-    
+extension PostDetailsViewController: WKUIDelegate, WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated  {
+            if let newURL = navigationAction.request.url {
+                UIApplication.shared.open(newURL, options: [:]) { canBeOpen in
+                    if canBeOpen {
+                        decisionHandler(.cancel)
+                    } else {
+                        decisionHandler(.allow)
+                    }
+                }
+            } else {
+                decisionHandler(.allow)
+            }
+        } else {
+            decisionHandler(.allow)
+        }
+    }
 }
 
 extension PostDetailsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < contentOffsetY || scrollView.contentOffset.y < 5 {
-            navigationBarTopConstr.constant = 0
-            UIView.animate(withDuration: 0.2) {
-                self.view.layoutIfNeeded()
+        let nextContentOffsetY = scrollView.contentOffset.y
+        let alreadyHidden = abs(navigationBarTopConstr.constant + 64) == 0
+        
+        if scrollView.contentOffset.y + scrollView.frame.size.height > scrollView.contentSize.height {
+            // nothing
+        } else if nextContentOffsetY < prevContentOffsetY || nextContentOffsetY < 5 {
+            // Show
+            if alreadyHidden == true {
+                navigationBarTopConstr.constant = 0
+                UIView.animate(withDuration: 0.2) {
+                    self.view.layoutIfNeeded()
+                }
             }
         } else {
-            navigationBarTopConstr.constant = -64
-            UIView.animate(withDuration: 0.2) {
-                self.view.layoutIfNeeded()
+            if alreadyHidden == false {
+                navigationBarTopConstr.constant = -64
+                UIView.animate(withDuration: 0.2) {
+                    self.view.layoutIfNeeded()
+                }
             }
         }
         
-        contentOffsetY = scrollView.contentOffset.y
+        prevContentOffsetY = nextContentOffsetY
     }
 }

@@ -13,9 +13,9 @@ class RootViewController: UIViewController {
     @IBOutlet weak var feedButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var webViewContainer: UIView!
     
     weak var delegate: RootViewControllerDelegate?
-    
     private var tabsViewController: TabsViewController?
     
     init(rootViewControllerDelegate: RootViewControllerDelegate) {
@@ -278,9 +278,9 @@ extension RootViewController {
     }
     
     private func configureTabsViewController() {
-        let walletViewController = FeedsContainerViewController(identifier: "feed", interfaceCoordinator: self, source: self)
+        let feedsContainerViewController = FeedsContainerViewController(identifier: "feed", interfaceCoordinator: self, source: self, webViewContainer: webViewContainer)
         let profileViewController = ProfileViewController(identifier: "profile", interfaceCoordinator: self)
-        let controllers = [walletViewController, profileViewController] as! [UIViewController & Page]
+        let controllers = [feedsContainerViewController, profileViewController] as! [UIViewController & Page]
         self.tabsViewController = TabsViewController(rootViewController: self, controllers: controllers)
         self.highlightButton(at: 0)
     }

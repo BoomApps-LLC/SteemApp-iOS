@@ -20,6 +20,8 @@ class FeedViewController: UIViewController, Page {
     @IBOutlet weak var bottomActivityContainerView: UIView!
     @IBOutlet weak var progressView: ProgressView!
     @IBOutlet weak var activityIndicatorView: UIView!
+    @IBOutlet weak var maintanceView: UIView!
+    @IBOutlet weak var maintanceLabel: UILabel!
     
     internal var identifier: String
     
@@ -62,11 +64,13 @@ class FeedViewController: UIViewController, Page {
         refreshControl.tintColor = UIColor.white
         activityIndicatorView.isHidden = true
         
-        reloadFeed(completion: {})
+        reloadFeed(completion: { err in
+            self.showMaintanceScreenIfNeed(error: err)
+        })
         reloadRewards(completion: {})
     }
     
-    private func reloadFeed(completion: @escaping () -> ()) {
+    private func reloadFeed(completion: @escaping (Error?) -> ()) {
         let fs = ServiceLocator.Application.feedService()
         let ft = FeedTypes(rawValue: identifier)!
         
@@ -82,13 +86,13 @@ class FeedViewController: UIViewController, Page {
                     self.collectionView.reloadData()
                 })
                 self.collectionView.reloadData()
-                completion()
+                completion(nil)
                 
                 self.progressView.disappearAnimate(completion: { })
                 break
-            case .error:
+            case .error(let err):
                 self.interfaceCoordinator?.alert(presenter: self, style: .error("Something went wrong"))
-                completion()
+                completion(err)
                 
                 self.progressView.disappearAnimate(completion: { })
                 break
@@ -159,13 +163,25 @@ class FeedViewController: UIViewController, Page {
         
         return b
     }
+    
+    private func showMaintanceScreenIfNeed(error: Error?) {
+        self.maintanceView.isHidden = self.items.count > 0
+        self.maintanceLabel.text = (error == nil ? "Steem App are the easiest way to share your ideas with the worl" : "Something's wrong")
+    }
+    
+    @IBAction func reloadContentAction(_ sender: Any) {
+        reloadFeed { err in
+            self.showMaintanceScreenIfNeed(error: err)
+        }
+    }
 }
 
 extension FeedViewController {
     @objc func pullToRefresh(_ refreshControl: UIRefreshControl) {
         refreshControl.beginRefreshing()
-        reloadFeed(completion: {
+        reloadFeed(completion: { err in
             refreshControl.endRefreshing()
+            self.showMaintanceScreenIfNeed(error: err)
         })
         
         reloadRewards(completion: {
@@ -310,7 +326,7 @@ extension FeedViewController: FeedViewCellDataSource {
 extension FeedViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let i = item(at: indexPath)
-        let c = PostDetailsViewController(username: username, item: i, dataSource: self, delegate: self)
+        let c = PostDetailsViewController(username: username, item: i, dataSource: self, delegate: self, interfaceCoordinator: interfaceCoordinator)
         
         present(c, animated: true, completion: nil)
     }

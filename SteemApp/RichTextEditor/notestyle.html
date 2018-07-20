@@ -15,7 +15,10 @@
         
         <!-- CSS Styles for ZSSRichTextEditor -->
         <style type="text/css">
-            
+            iframe {
+                max-width: 100%;
+            }
+        
             blockquote {
                 color: #8A8A8A;
                 border-left: 2px solid #8A8A8A;
@@ -65,6 +68,7 @@
             -webkit-font-smoothing: antialiased;
             -webkit-overflow-scrolling: touch;
             height: 100%;
+            word-break: break-word;
         }
         
         h1, h2, h3 {
@@ -87,12 +91,63 @@
             </style>
         
     </head>
-        <body></body>
+    <body id='contentToTransform' onload='trms.fire();'></body>
     <!--script src="./steem.min.js"></script>
     <script>
         steem.api.getCurrentMedianHistoryPrice(function(e, t) {
                                                console.log( steemPrice);
                                                });
         </script-->
+    
+    <script>
+        createYoutubeEmbed = (key) => {
+            return '<iframe width="100%" height="345" src="https://www.youtube.com/embed/' + key + '" frameborder="0" allowfullscreen></iframe><br/>';
+        };
+    
+        transformYoutubeLinks = (text) => {
+            if (!text) return text;
+            const self = this;
+            
+            const linkreg = /(?:)<a([^>]+)>(.+?)<\/a>/g;
+            const fullreg = /(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([^& \n<]+)(?:[^ \n<]+)?/g;
+            const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^& \n<]+)(?:[^ \n<]+)?/g;
+            
+            let resultHtml = text;
+            
+            // get all the matches for youtube links using the first regex
+            const match = text.match(fullreg);
+            if (match && match.length > 0) {
+                // get all links and put in placeholders
+                const matchlinks = text.match(linkreg);
+                if (matchlinks && matchlinks.length > 0) {
+                    for (var i=0; i < matchlinks.length; i++) {
+                        resultHtml = resultHtml.replace(matchlinks[i], "#placeholder" + i + "#");
+                    }
+                }
+                
+                // now go through the matches one by one
+                for (var i=0; i < match.length; i++) {
+                    // get the key out of the match using the second regex
+                    let matchParts = match[i].split(regex);
+                    // replace the full match with the embedded youtube code
+                    resultHtml = resultHtml.replace(match[i], self.createYoutubeEmbed(matchParts[1]));
+                }
+                
+                // ok now put our links back where the placeholders were.
+                if (matchlinks && matchlinks.length > 0) {
+                    for (var i=0; i < matchlinks.length; i++) {
+                        resultHtml = resultHtml.replace("#placeholder" + i + "#", matchlinks[i]);
+                    }
+                }
+            }
+            return resultHtml;
+        };
+    
+    var trms = {};
+    trms.fire = function() {
+        const htmlContent = document.getElementById('contentToTransform');
+        htmlContent.innerHTML = transformYoutubeLinks(htmlContent.innerHTML);
+    }
+    </script>
 </html>
 

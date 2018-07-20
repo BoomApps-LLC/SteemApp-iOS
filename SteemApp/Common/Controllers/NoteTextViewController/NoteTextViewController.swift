@@ -83,7 +83,7 @@ class NoteTextViewController: UIViewController {
         self.richTextEditorController.didMove(toParentViewController: self)
         self.richTextEditorController.receiveEditorDidChangeEvents = true
         
-        self.richTextEditorController.enabledToolbarItems = [ZSSRichTextEditorToolbarViewSource,
+        self.richTextEditorController.enabledToolbarItems = [//ZSSRichTextEditorToolbarViewSource,
                                                              //ZSSRichTextEditorToolbarRemoveFormat,
                                                              ZSSRichTextEditorToolbarBold,
                                                              ZSSRichTextEditorToolbarItalic,

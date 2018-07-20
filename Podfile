@@ -5,6 +5,8 @@ use_frameworks!
 
 target 'SteemApp' do
   pod 'Kingfisher', '~> 4.0'
+  # RELEASE XXX
+  pod 'Facebook-iOS-SDK'
 end
 
 target 'Platform' do

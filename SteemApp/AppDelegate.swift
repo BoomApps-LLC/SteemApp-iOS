@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,10 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private var toastViewBottom: NSLayoutConstraint!
     private var toastView: ToastView!
+    private var subsideryWebViewContainer: UIView!
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         let rootContainerViewController = RootViewController(rootViewControllerDelegate: self)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -25,11 +26,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         setupToastView(window: window!)
+        setupSubsideryWebViewContainer(window: window!)
+        
+        rootContainerViewController.webViewContainer = subsideryWebViewContainer
         
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = UIColor.white
         navigationBarAppearace.barTintColor = UIColor(rgb: 0x894DEB)
         navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        
+        setupAnalytics(application: application, launchOptions: launchOptions)
         
         return true
     }
@@ -52,16 +58,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+        
+        return handled
+    }
+}
 
+extension AppDelegate {
+    private func setupAnalytics(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
 }
 
 extension AppDelegate: RootViewControllerDelegate {
+    private func setupSubsideryWebViewContainer(window: UIWindow) {
+        subsideryWebViewContainer = UIView(frame: .zero)
+        subsideryWebViewContainer.backgroundColor = UIColor.clear
+        subsideryWebViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        window.addSubview(subsideryWebViewContainer)
+        
+        window.leftAnchor.constraint(equalTo: subsideryWebViewContainer.leftAnchor, constant: 0).isActive = true
+        window.rightAnchor.constraint(equalTo: subsideryWebViewContainer.rightAnchor, constant: 0).isActive = true
+        window.bottomAnchor.constraint(equalTo: subsideryWebViewContainer.bottomAnchor, constant: 0).isActive = true
+        subsideryWebViewContainer.heightAnchor.constraint(equalToConstant: 1).isActive = true
+    }
+    
     private func setupToastView(window: UIWindow) {
         if let tv = Bundle.main.loadNibNamed("ToastView", owner: self, options: nil)?.first as? ToastView {
             toastView = tv

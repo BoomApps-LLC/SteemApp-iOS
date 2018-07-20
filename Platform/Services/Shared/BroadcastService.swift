@@ -43,7 +43,7 @@ public class SteemitBroadcastService: NSObject {
     private var webView: WKWebView?
     private var futures: [String: Any] = [:]
     
-    init(webViewConatiner: UIView) {
+    init(webViewConatiner: UIView, navigationDelegate: WKNavigationDelegate? = nil) {
         super.init()
         
         if let htmlPath = Bundle.main.path(forResource: Config.API.Broadcast.rpcHandlerFilename, ofType: "html") {

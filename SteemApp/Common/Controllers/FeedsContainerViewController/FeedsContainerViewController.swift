@@ -18,11 +18,11 @@ class FeedsContainerViewController: UIViewController, Page {
     @IBOutlet weak var hotItem: UIButton!
     @IBOutlet weak var promotedItem: UIButton!
     @IBOutlet weak var pagesContainerView: UIView!
-    @IBOutlet weak var webViewConatiner: UIView!
     
     private var broadcastSvc: (BroadcastService & UploadService)?
     private let userSvc = ServiceLocator.Application.userService()
     private var pagesViewController: PagesViewController!
+    private let webViewContainer: UIView
     
     var all: [UIButton] {
         return [blogItem, feedItem, trendingItem, newItem, hotItem, promotedItem]
@@ -34,10 +34,11 @@ class FeedsContainerViewController: UIViewController, Page {
     private var source: UIViewController
     private let userService = ServiceLocator.Application.userService()
     
-    init(identifier: String, interfaceCoordinator: InterfaceCoordinator?, source: UIViewController) {
+    init(identifier: String, interfaceCoordinator: InterfaceCoordinator?, source: UIViewController, webViewContainer: UIView) {
         self.source = source
         self.identifier = identifier
         self.interfaceCoordinator = interfaceCoordinator
+        self.webViewContainer = webViewContainer
         super.init(nibName: "FeedsContainerViewController", bundle: nil)
     }
     
@@ -82,7 +83,7 @@ class FeedsContainerViewController: UIViewController, Page {
                         let startItem = self.identifier(at: 0)
                         self.highlightAndSeekCategory(title: startItem)
                         
-                        self.broadcastSvc = ServiceLocator.Application.broadcastService(webViewConatiner: self.webViewConatiner)
+                        self.broadcastSvc = ServiceLocator.Application.broadcastService(webViewConatiner: self.webViewContainer)
                     }
                     
                 } else {

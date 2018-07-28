@@ -5,12 +5,11 @@ use_frameworks!
 
 target 'SteemApp' do
   pod 'Kingfisher', '~> 4.0'
-  # RELEASE XXX
-  pod 'Facebook-iOS-SDK'
+  #pod 'Facebook-iOS-SDK'
 end
 
 target 'Platform' do
-  pod 'Moya'
+  pod 'Moya', '~> 10.0.1'
   pod 'KeychainAccess'
   pod 'CryptoSwift'
   pod 'QRCodeReader.swift', '~> 8.1.1'

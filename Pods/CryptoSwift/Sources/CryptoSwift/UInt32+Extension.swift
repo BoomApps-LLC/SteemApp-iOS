@@ -1,5 +1,4 @@
 //
-//  UInt32Extension.swift
 //  CryptoSwift
 //
 //  Copyright (C) 2014-2017 Marcin Krzyżanowski <marcin@krzyzanowskim.com>
@@ -14,10 +13,10 @@
 //  - This notice may not be removed or altered from any source or binary distribution.
 //
 
-#if os(Linux) || os(Android) || os(FreeBSD)
-    import Glibc
+#if canImport(Darwin)
+import Darwin
 #else
-    import Darwin
+import Glibc
 #endif
 
 protocol _UInt32Type {}
@@ -25,7 +24,6 @@ extension UInt32: _UInt32Type {}
 
 /** array of bytes */
 extension UInt32 {
-
     @_specialize(exported: true, where T == ArraySlice<UInt8>)
     init<T: Collection>(bytes: T) where T.Element == UInt8, T.Index == Int {
         self = UInt32(bytes: bytes, fromIndex: bytes.startIndex)

@@ -1,5 +1,4 @@
 //
-//  StringExtension.swift
 //  CryptoSwift
 //
 //  Copyright (C) 2014-2017 Marcin Krzyżanowski <marcin@krzyzanowskim.com>
@@ -16,7 +15,6 @@
 
 /** String extension */
 extension String {
-
     public var bytes: Array<UInt8> {
         return data(using: String.Encoding.utf8, allowLossyConversion: true)?.bytes ?? Array(utf8)
     }
@@ -50,6 +48,10 @@ extension String {
     }
 
     public func crc32(seed: UInt32? = nil, reflect: Bool = true) -> String {
+        return bytes.crc32(seed: seed, reflect: reflect).bytes().toHexString()
+    }
+
+    public func crc32c(seed: UInt32? = nil, reflect: Bool = true) -> String {
         return bytes.crc32(seed: seed, reflect: reflect).bytes().toHexString()
     }
 

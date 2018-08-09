@@ -16,11 +16,13 @@ public enum WalletServiceError: Error {
     case noAccount
     case noHelloacm
     case noCoinmarketcap
+    case noEstimateOutputAmount
 }
 
 public protocol WalletService {
     func balance(completion: @escaping (Result<Double>) -> Void)
     func balanceCache(completion: @escaping (Result<Double>) -> Void)
+    func estimateOutputAmount(ict: Currency, oct: Currency, completion: @escaping (Result<CurrencyPair>) -> Void)
 }
 
 struct SteemitWalletService {
@@ -44,6 +46,34 @@ struct SteemitWalletService {
 
 
 extension SteemitWalletService: WalletService {
+    func estimateOutputAmount(ict: Currency, oct: Currency, completion: @escaping (Result<CurrencyPair>) -> Void) {
+        // TODO: improve
+        let session = URLSession.shared
+        let urlStr = "https://blocktrades.us:443/api/v2/estimate-output-amount?inputAmount=1&inputCoinType=\(ict.rawValue)&outputCoinType=\(oct.rawValue)"
+        let url = URL(string: urlStr)!
+        
+        let task = session.dataTask(with: url) { (data, _, error) in
+            DispatchQueue.main.async {
+                if let d = data, error == nil {
+                    do {
+                        let jsonDecoder = JSONDecoder(formatter: Config.Formatters.Date.standart)
+                        let cpr = try jsonDecoder.decode(CurrencyPairRaw.self, from: d)
+                        let res = Result<CurrencyPair>.success(cpr.asEntity)
+                        completion(res)
+                    } catch {
+                        let res = Result<CurrencyPair>.error(WalletServiceError.noEstimateOutputAmount)
+                        completion(res)
+                    }
+                } else {
+                    let res = Result<CurrencyPair>.error(WalletServiceError.noEstimateOutputAmount)
+                    completion(res)
+                }
+            }
+        }
+        
+        task.resume()
+    }
+    
     func balanceCache(completion: @escaping (Result<Double>) -> Void) {
         userDefaultsStorageSvc.get(key: Config.Storage.Keys.balance) { (res: Result<Double?>) in
             var balance: Double = 0.0

@@ -51,6 +51,12 @@ class RootViewController: UIViewController {
 }
 
 extension RootViewController: InterfaceCoordinator {
+    func currency(completion: @escaping () -> ()) {
+        let controller = CurrentRatesViewController(interfaceCoordinator: self)
+        controller.modalPresentationStyle = .custom
+        self.present(controller, animated: true, completion: {})
+    }
+    
     func onboarding(contentType: OnboardingShowingContentType, onclose: (() -> ())?) {
         let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController") as! OnboardingViewController

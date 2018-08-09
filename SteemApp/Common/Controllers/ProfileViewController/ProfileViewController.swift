@@ -15,6 +15,8 @@ class ProfileViewController: UIViewController, Page {
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var leftCurrencyLabel: UILabel!
+    @IBOutlet weak var rightCurrencyLabel: UILabel!
     
     internal var identifier: String
     private weak var interfaceCoordinator: InterfaceCoordinator?
@@ -79,6 +81,19 @@ class ProfileViewController: UIViewController, Page {
                 }
             }
         }
+        
+        self.walletSvc.estimateOutputAmount(ict: Currency.steem, oct: Currency.bitusd) { res in
+            if case .success(let cp) = res {
+                DispatchQueue.main.async {
+                    self.leftCurrencyLabel.text = "STEEM"
+                    self.rightCurrencyLabel.text = "USD \(String(format: "%.4f", Float(cp.outputAmount) ?? 0))"
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.interfaceCoordinator?.alert(presenter: self, style: .error("Data for trades is not available"))
+                }
+            }
+        }
     }
     
 
@@ -127,8 +142,8 @@ class ProfileViewController: UIViewController, Page {
         }
     }
     
-    @IBAction func closeButtonAction(_ sender: Any) {
-        interfaceCoordinator?.dismiss(self, completion: nil)
+    @IBAction func currentButtonAction(_ sender: Any) {
+        interfaceCoordinator?.currency(completion: { })
     }
 }
 

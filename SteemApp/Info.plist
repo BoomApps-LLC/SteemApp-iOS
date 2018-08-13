@@ -21,14 +21,14 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb</string>
+				<string>fb299747247235471</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>FacebookAppID</key>
-	<string></string>
+	<string>299747247235471</string>
 	<key>FacebookDisplayName</key>
 	<string>SteemApp</string>
 	<key>ITSAppUsesNonExemptEncryption</key>

@@ -1,7 +1,35 @@
 PODS:
   - Alamofire (4.7.3)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
   - CryptoSwift (0.10.0)
   - Down (0.5.2)
+  - Facebook-iOS-SDK (4.35.0):
+    - Bolts (~> 1.7)
+    - Facebook-iOS-SDK/CoreKit (= 4.35.0)
+    - Facebook-iOS-SDK/LoginKit (= 4.35.0)
+    - Facebook-iOS-SDK/MarketingKit (= 4.35.0)
+    - Facebook-iOS-SDK/PlacesKit (= 4.35.0)
+    - Facebook-iOS-SDK/ShareKit (= 4.35.0)
+    - Facebook-iOS-SDK/TVOSKit (= 4.35.0)
+  - Facebook-iOS-SDK/CoreKit (4.35.0):
+    - Bolts (~> 1.7)
+  - Facebook-iOS-SDK/LoginKit (4.35.0):
+    - Bolts (~> 1.7)
+    - Facebook-iOS-SDK/CoreKit
+  - Facebook-iOS-SDK/MarketingKit (4.35.0):
+    - Bolts (~> 1.7)
+    - Facebook-iOS-SDK/CoreKit
+  - Facebook-iOS-SDK/PlacesKit (4.35.0):
+    - Bolts (~> 1.7)
+    - Facebook-iOS-SDK/CoreKit
+  - Facebook-iOS-SDK/ShareKit (4.35.0):
+    - Bolts (~> 1.7)
+    - Facebook-iOS-SDK/CoreKit
   - KeychainAccess (3.1.1)
   - Kingfisher (4.8.1)
   - Moya (10.0.2):
@@ -16,6 +44,7 @@ PODS:
 DEPENDENCIES:
   - CryptoSwift
   - Down
+  - Facebook-iOS-SDK
   - KeychainAccess
   - Kingfisher (~> 4.0)
   - Moya (~> 10.0.1)
@@ -24,8 +53,10 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
   Down: 587371ad58002b06023d9c602519216862c3acbc
+  Facebook-iOS-SDK: e729a95092b271f354cef8e9cf2fef957aa6ffb4
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
   Moya: 2b0531a9fef318e0bc484030c3db1e6f279ccb66
@@ -33,6 +64,6 @@ SPEC CHECKSUMS:
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SwiftSoup: e5f61d37e3d802a4b5db81b4945de3da9bfdf115
 
-PODFILE CHECKSUM: 2d9fed7fceb9a7f00facab0a827be812d893a629
+PODFILE CHECKSUM: 8b3efc00b7434101ae028beed5a789b722730dda
 
 COCOAPODS: 1.4.0

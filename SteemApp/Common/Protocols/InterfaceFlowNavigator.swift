@@ -35,6 +35,7 @@ protocol InterfaceCoordinator: class, Navigatable {
     func witnessVote(presenter viewController: UIViewController, onClose: @escaping () -> (), onVote: @escaping () -> ())
     func signup()
     func vote(completion: @escaping () -> ())
+    func currency(completion: @escaping () -> ())
     
     func showActivityIndicator(_ completion: (() -> Swift.Void)?)
     func hideActivityIndicator(_ completion: (() -> Swift.Void)?)

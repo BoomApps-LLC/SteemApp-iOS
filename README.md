@@ -25,3 +25,5 @@ Then run `pod install`.
 
 # License
 **SteemApp-iOS** is released under an MIT license. See [LICENSE](https://github.com/BoomApps-LLC/SteemApp-iOS/blob/master/LICENSE) for more information.
+
+Developers who commit their code all agree that **Utopian** posts with development tag will be posted through **@yuriks2000** account on Steemit.

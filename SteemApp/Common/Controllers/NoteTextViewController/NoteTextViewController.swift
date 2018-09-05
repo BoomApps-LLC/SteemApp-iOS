@@ -87,7 +87,8 @@ class NoteTextViewController: UIViewController {
         
         for picture in paths {
             if let range = newBody.range(of: picture.key) {
-                let newFilePath = URL(fileURLWithPath: tmpDirectoryPath).appendingPathComponent(picture.value).absoluteString
+                let baseFileName = URL(fileURLWithPath: picture.key).lastPathComponent
+                let newFilePath = URL(fileURLWithPath: tmpDirectoryPath).appendingPathComponent(baseFileName).absoluteString
                 newBody.replaceSubrange(range, with: newFilePath)
                 newPaths[newFilePath] = picture.value
             }

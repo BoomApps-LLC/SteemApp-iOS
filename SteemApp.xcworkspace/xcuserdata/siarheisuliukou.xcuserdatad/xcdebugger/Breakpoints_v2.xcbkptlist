@@ -74,29 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Platform/Services/Shared/BroadcastService.swift"
-            timestampString = "557852118.1467431"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "upload(items:username:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Platform/Services/Shared/BroadcastService.swift"
-            timestampString = "557852118.1471159"
+            timestampString = "557863090.747377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
             endingLineNumber = "73"
-            landmarkName = "upload(items:username:completion:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,13 +90,221 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Platform/Services/Shared/BroadcastService.swift"
-            timestampString = "557852118.147355"
+            timestampString = "557863090.747777"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
             endingLineNumber = "96"
-            landmarkName = "upload(items:username:completion:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SteemApp/Common/Controllers/RewardsViewController/RewardsViewController.swift"
+            timestampString = "557863090.7480429"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Platform.Result&lt;Swift.Array&lt;Platform.SignedLinks&gt;&gt;) -&gt; () in closure #1 (Platform.Result&lt;Swift.Array&lt;Platform.SignedData&gt;&gt;) -&gt; () in closure #1 (Platform.Result&lt;Swift.Array&lt;Platform.ImageAsset&gt;&gt;) -&gt; () in SteemApp.RewardsViewController.(prepare in _E2983C0EC1B46F8C0F3139C963331F05)(author: Swift.String, wif: Swift.String) -&gt; ()"
+                  moduleName = "SteemApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siarheisuliukou/Documents/Testable/SteemApp/GHB/SteemApp-iOS/SteemApp/Common/Controllers/RewardsViewController/RewardsViewController.swift"
+                  timestampString = "557863090.863139"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "158"
+                  endingLineNumber = "158"
+                  offsetFromSymbolStart = "660">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Platform.SignedLinks) -&gt; () in closure #1 (Platform.Result&lt;Swift.Array&lt;Platform.SignedLinks&gt;&gt;) -&gt; () in closure #1 (Platform.Result&lt;Swift.Array&lt;Platform.SignedData&gt;&gt;) -&gt; () in closure #1 (Platform.Result&lt;Swift.Array&lt;Platform.ImageAsset&gt;&gt;) -&gt; () in SteemApp.RewardsViewController.(prepare in _E2983C0EC1B46F8C0F3139C963331F05)(author: Swift.String, wif: Swift.String) -&gt; ()"
+                  moduleName = "SteemApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siarheisuliukou/Documents/Testable/SteemApp/GHB/SteemApp-iOS/SteemApp/Common/Controllers/RewardsViewController/RewardsViewController.swift"
+                  timestampString = "557863090.8650579"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SteemApp/Common/Controllers/RewardsViewController/RewardsViewController.swift"
+            timestampString = "557863090.748095"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Platform/Services/Shared/BroadcastService.swift"
+            timestampString = "557863090.74814"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Platform.SteemitBroadcastService.sign(assets: Swift.Array&lt;Platform.ImageAsset&gt;, wif: Swift.String, completion: (Platform.Result&lt;Swift.Array&lt;Platform.SignedData&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Platform"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siarheisuliukou/Documents/Testable/SteemApp/GHB/SteemApp-iOS/Platform/Services/Shared/BroadcastService.swift"
+                  timestampString = "557863091.855009"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "194"
+                  endingLineNumber = "194"
+                  offsetFromSymbolStart = "308">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Platform.ImageAsset) -&gt; () in Platform.SteemitBroadcastService.sign(assets: Swift.Array&lt;Platform.ImageAsset&gt;, wif: Swift.String, completion: (Platform.Result&lt;Swift.Array&lt;Platform.SignedData&gt;&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Platform"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siarheisuliukou/Documents/Testable/SteemApp/GHB/SteemApp-iOS/Platform/Services/Shared/BroadcastService.swift"
+                  timestampString = "557863091.858325"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Platform/Services/Shared/BroadcastService.swift"
+            timestampString = "557863090.748358"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SteemApp/Common/Controllers/RewardsViewController/RewardsViewController.swift"
+            timestampString = "557863090.748571"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SteemApp.RewardsViewController.(prepare in _E2983C0EC1B46F8C0F3139C963331F05)(author: Swift.String, wif: Swift.String) -&gt; ()"
+                  moduleName = "SteemApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siarheisuliukou/Documents/Testable/SteemApp/GHB/SteemApp-iOS/SteemApp/Common/Controllers/RewardsViewController/RewardsViewController.swift"
+                  timestampString = "557863090.875967"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "2536">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Platform.Result&lt;Swift.Array&lt;Platform.ImageAsset&gt;&gt;) -&gt; () in SteemApp.RewardsViewController.(prepare in _E2983C0EC1B46F8C0F3139C963331F05)(author: Swift.String, wif: Swift.String) -&gt; ()"
+                  moduleName = "SteemApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siarheisuliukou/Documents/Testable/SteemApp/GHB/SteemApp-iOS/SteemApp/Common/Controllers/RewardsViewController/RewardsViewController.swift"
+                  timestampString = "557863090.882087"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SteemApp/Common/Controllers/RewardsViewController/RewardsViewController.swift"
+            timestampString = "557863090.7486351"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Platform/Services/Shared/BroadcastService.swift"
+            timestampString = "557863090.748755"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -122,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SteemApp/Common/Controllers/NoteTextViewController/NoteTextViewController.swift"
-            timestampString = "557852118.1475869"
+            timestampString = "557863090.749097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "overrideImagePaths(paths:in:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,44 +330,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SteemApp/Common/Controllers/NoteTextViewController/NoteTextViewController.swift"
-            timestampString = "557852118.147638"
+            timestampString = "557863090.749385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "89"
             endingLineNumber = "89"
             landmarkName = "overrideImagePaths(paths:in:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SteemApp/Common/Controllers/NoteTextViewController/NoteTextViewController.swift"
-            timestampString = "557852118.147683"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SteemApp/Common/Model/SomeNote.swift"
-            timestampString = "557852118.147727"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "assets(set:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

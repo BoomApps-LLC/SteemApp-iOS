@@ -2073,7 +2073,7 @@ static CGFloat kDefaultScale = 1.0;
         [self updateImage:path.absoluteString alt:@"" width:percent height:@"auto"];
     }
     
-    [self.delegate richTextEditor:self didAddLink: path.absoluteString localIdentifier: [[NSURL fileURLWithPath:path.absoluteString] lastPathComponent]];
+    [self.delegate richTextEditor:self didAddLink: path.absoluteString localIdentifier: [asset localIdentifier]];
     
 //    UIImage *selectedImage = info[UIImagePickerControllerEditedImage]?:info[UIImagePickerControllerOriginalImage];
 //

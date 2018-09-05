@@ -156,7 +156,9 @@ class RewardsViewController: UIViewController {
                                 let links = signedLinks.map({ $0.link })
                                 var body = rawbody
                                 signedLinks.forEach({ (signedLink) in
-                                    body = body.replacingOccurrences(of: signedLink.path, with: signedLink.link)
+                                    if let range = body.range(of: signedLink.path) {
+                                        body.replaceSubrange(range, with: signedLink.link)
+                                    }
                                 })
 
                                 let comment = BroadcastComment(parent_author: "", parent_permlink: tags.first!,

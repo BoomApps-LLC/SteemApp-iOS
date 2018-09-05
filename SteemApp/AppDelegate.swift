@@ -137,7 +137,7 @@ extension AppDelegate: RootViewControllerDelegate {
         UIView.animate(withDuration: animated ? 0.5 : 0.0, animations: {
             self.toastView.superview?.layoutIfNeeded()
         }) { _ in
-            self.toastView.toastViewLabel.text = ""
+            //self.toastView.toastViewLabel.text = ""
         }
     }
 }

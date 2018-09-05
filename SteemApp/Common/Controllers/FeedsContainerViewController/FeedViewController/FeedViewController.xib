@@ -66,6 +66,7 @@
                                 <constraint firstAttribute="width" constant="44" id="PaF-9M-zHD"/>
                                 <constraint firstAttribute="height" constant="44" id="acb-u9-qR7"/>
                             </constraints>
+                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                             <state key="normal" image="reload_content"/>
                             <connections>
                                 <action selector="reloadContentAction:" destination="-1" eventType="touchUpInside" id="60p-QG-NR7"/>

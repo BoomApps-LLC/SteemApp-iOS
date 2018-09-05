@@ -88,7 +88,6 @@ extension SteemitBroadcastService: UploadService {
             request.httpMethod = "POST"
             request.setValue("*/*", forHTTPHeaderField: "accept")
             request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-            //request.setValue("https://steemit.com/submit.html", forHTTPHeaderField: "referer")
             request.setValue("POST", forHTTPHeaderField: "access-control-request-method")
             request.setValue("https://steemit.com", forHTTPHeaderField: "origin")
 

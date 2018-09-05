@@ -30,9 +30,16 @@ class NoteTextViewController: UIViewController {
 
         configureTextEditor()
         
-        let b = (SharedNote.shared.note?.body ?? "")
-        richTextEditorController.setHTML(b)
-        activateNextButtonIfNeeded(with: b)
+        let body = (SharedNote.shared.note?.body ?? "")
+        let assets = SharedNote.shared.note!.assets
+        let (newAssets, newBody) = overrideImagePaths(paths: assets, in: body)
+        
+        SharedNote.shared.body(set: newBody)
+        SharedNote.shared.assets(set: newAssets)
+        SharedNote.shared.save()
+        
+        richTextEditorController.setHTML(newBody)
+        activateNextButtonIfNeeded(with: newBody)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +78,22 @@ class NoteTextViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func overrideImagePaths(paths: [String: String], in body: String) -> ([String: String], String) {
+        let tmpDirectoryPath = NSTemporaryDirectory()
+        var newBody = body
+        var newPaths = [String: String]()
+        
+        for picture in paths {
+            if let range = newBody.range(of: picture.key) {
+                let newFilePath = URL(fileURLWithPath: tmpDirectoryPath).appendingPathComponent(picture.value).absoluteString
+                newBody.replaceSubrange(range, with: newFilePath)
+                newPaths[newFilePath] = picture.value
+            }
+        }
+        
+        return (newPaths, newBody)
     }
     
     private func configureTextEditor() {

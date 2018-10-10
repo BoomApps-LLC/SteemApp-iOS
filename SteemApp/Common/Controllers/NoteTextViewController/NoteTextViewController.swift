@@ -30,16 +30,23 @@ class NoteTextViewController: UIViewController {
 
         configureTextEditor()
         
-        let b = (SharedNote.shared.note?.body ?? "")
-        richTextEditorController.setHTML(b)
-        activateNextButtonIfNeeded(with: b)
+        let body = (SharedNote.shared.note?.body ?? "")
+        let assets = SharedNote.shared.note!.assets
+        let (newAssets, newBody) = overrideImagePaths(paths: assets, in: body)
+        
+        SharedNote.shared.body(set: newBody)
+        SharedNote.shared.assets(set: newAssets)
+        SharedNote.shared.save()
+        
+        richTextEditorController.setHTML(newBody)
+        activateNextButtonIfNeeded(with: newBody)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -73,14 +80,30 @@ class NoteTextViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    private func overrideImagePaths(paths: [String: String], in body: String) -> ([String: String], String) {
+        let tmpDirectoryPath = NSTemporaryDirectory()
+        var newBody = body
+        var newPaths = [String: String]()
+        
+        for picture in paths {
+            if let range = newBody.range(of: picture.key) {
+                let newFilePath = URL(fileURLWithPath: tmpDirectoryPath).appendingPathComponent(picture.value).absoluteString
+                newBody.replaceSubrange(range, with: newFilePath)
+                newPaths[newFilePath] = picture.value
+            }
+        }
+        
+        return (newPaths, newBody)
+    }
+    
     private func configureTextEditor() {
         guard let richTextEditorView = richTextEditorController.view else { return }
         
-        self.addChildViewController(richTextEditorController)
+        self.addChild(richTextEditorController)
         self.richTextViewContainer.addSubview(richTextEditorView)
         
         richTextEditorView.flipToBorder()
-        self.richTextEditorController.didMove(toParentViewController: self)
+        self.richTextEditorController.didMove(toParent: self)
         self.richTextEditorController.receiveEditorDidChangeEvents = true
         
         self.richTextEditorController.enabledToolbarItems = [//ZSSRichTextEditorToolbarViewSource,
@@ -156,9 +179,9 @@ extension NoteTextViewController {
 
 extension NoteTextViewController {
     @objc private func keyboardWillShow(_ notification: NSNotification) {
-        let duration = TimeInterval((notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.floatValue ?? 0.25)
-        let curve = UInt((notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue ?? 0)
-        let options = UIViewAnimationOptions(rawValue: curve)
+        let duration = TimeInterval((notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.floatValue ?? 0.25)
+        let curve = UInt((notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue ?? 0)
+        let options = UIView.AnimationOptions(rawValue: curve)
         
         guard let keyboardFrameEnd = notification.userInfo?["UIKeyboardFrameEndUserInfoKey"] as? CGRect else { return }
         let keyboardHeight = keyboardFrameEnd.size.height

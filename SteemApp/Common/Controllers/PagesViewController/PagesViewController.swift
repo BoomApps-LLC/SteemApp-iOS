@@ -72,7 +72,7 @@ extension PagesViewController: UIPageViewControllerDataSource {
         if index < count, let cvc = viewControllers?.first as? Page {
             if let vc = viewController(atIndex: index) {
                 let currentIndex = indexOfViewController(cvc)
-                let direction: UIPageViewControllerNavigationDirection = (index > currentIndex ? .forward : .reverse )
+                let direction: UIPageViewController.NavigationDirection = (index > currentIndex ? .forward : .reverse )
                 self.setViewControllers([vc], direction: direction, animated: true, completion: { (complete) -> Void in
                     completion?()
                 })

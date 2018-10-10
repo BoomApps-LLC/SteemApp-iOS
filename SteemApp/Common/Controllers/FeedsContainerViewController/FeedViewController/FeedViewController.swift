@@ -100,7 +100,7 @@ class FeedViewController: UIViewController, Page {
         })
     }
     
-    private func reloadRewards(completion: () -> ()) {
+    private func reloadRewards(completion: @escaping () -> ()) {
         let fs = ServiceLocator.Application.feedService()
         
         fs.postReward { (res: Result<PostReward>) in
@@ -112,6 +112,8 @@ class FeedViewController: UIViewController, Page {
                 self.interfaceCoordinator?.alert(presenter: self, style: .error("Post rewards can't be calculate"))
                 break
             }
+            
+            completion()
         }
     }
     

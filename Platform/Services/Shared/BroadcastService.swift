@@ -82,21 +82,25 @@ extension SteemitBroadcastService: UploadService {
             
             let urlstr = "https://steemitimages.com/\(username)/\(signedData.hash)"
             let url = URL(string: urlstr)!
-            let boundary = "Boundary-\(UUID().uuidString)"
+            let boundary = "----WebKitFormBoundary\(UUID().uuidString)"
             var request = URLRequest(url: url)
-            
+
             request.httpMethod = "POST"
+            request.setValue("*/*", forHTTPHeaderField: "accept")
             request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-            
+            request.setValue("POST", forHTTPHeaderField: "access-control-request-method")
+            request.setValue("https://steemit.com", forHTTPHeaderField: "origin")
+
             var body = Data();
             body.append("--\(boundary)\r\n".data(using: .utf8)!)
-            body.append("Content-Type: image/jpg\r\n\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(URL(fileURLWithPath: signedData.path).lastPathComponent)\"\r\n".data(using: .utf8)!)
+            body.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
             body.append(signedData.imageData)
             body.append("\r\n".data(using: .utf8)!)
             body.append("--\(boundary)--\r\n".data(using: .utf8)!)
-            
+
             request.httpBody = body
-            
+
             dispatchGroup.enter()
             URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
                 if data != nil {
@@ -112,7 +116,7 @@ extension SteemitBroadcastService: UploadService {
                 } else {
                     result = Result<[SignedLinks]>.error(SteemitBroadcastServiceError.badUrl)
                 }
-                
+
                 dispatchGroup.leave()
             }).resume()
         }
@@ -156,9 +160,9 @@ extension SteemitBroadcastService: UploadService {
                 .requestImageData(for: asset, options: options) { (imgData, uti, orientation, info) in
                     
                     if let imgData = imgData {
-                        var uploadData = Data()
-                        uploadData.append("ImageSigningChallenge".data(using: .utf8)!)
-                        uploadData.append(imgData)
+//                        var uploadData = Data()
+//                        uploadData.append("ImageSigningChallenge".data(using: .utf8)!)
+//                        uploadData.append(imgData)
                         
                         let imageAsset = ImageAsset(path: path, asset: asset, imageData: imgData)
                         resassets.append(imageAsset)

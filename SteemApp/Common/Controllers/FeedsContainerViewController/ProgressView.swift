@@ -26,7 +26,7 @@ public final class ProgressView: UIView {
         
         self.addSubview(activityIndicator)
         
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.style = .whiteLarge
         activityIndicator.hidesWhenStopped = true
         activityIndicator.flipToBorder()
     }

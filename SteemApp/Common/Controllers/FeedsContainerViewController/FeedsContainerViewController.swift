@@ -70,14 +70,14 @@ class FeedsContainerViewController: UIViewController, Page {
                         
                         self.pagesViewController = PagesViewController(source: self, controllers: [blogvc, feedvc, trendingvc, createdvc, hotvc, promotedvc])
                         
-                        self.addChildViewController(self.pagesViewController)
+                        self.addChild(self.pagesViewController)
                         self.pagesContainerView.addSubview(self.pagesViewController.view)
                         self.pagesViewController.view.flipToBorder()
                         
-                        self.pagesViewController.didMove(toParentViewController: self)
+                        self.pagesViewController.didMove(toParent: self)
                         
                         //categoriesScrollView.contentSize = CGSize(width: 700, height: 55)
-                        self.categoriesScrollView.contentInset = UIEdgeInsetsMake(0, 20, 0, 20)
+                        self.categoriesScrollView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
                         self.categoriesScrollView.contentOffset = CGPoint(x: -20, y: 0)
                         
                         let startItem = self.identifier(at: 0)

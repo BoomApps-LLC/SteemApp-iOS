@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import FBSDKCoreKit
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var subsideryWebViewContainer: UIView!
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let rootContainerViewController = RootViewController(rootViewControllerDelegate: self)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = UIColor.white
         navigationBarAppearace.barTintColor = UIColor(rgb: 0x894DEB)
-        navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         setupAnalytics(application: application, launchOptions: launchOptions)
         
@@ -58,23 +58,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        //FBSDKAppEvents.activateApp()
+        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-//    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-//        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
-//
-//        return handled
-//    }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+
+        return handled
+    }
 }
 
 extension AppDelegate {
-    private func setupAnalytics(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
-        //FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    private func setupAnalytics(application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 }
 
@@ -137,7 +137,7 @@ extension AppDelegate: RootViewControllerDelegate {
         UIView.animate(withDuration: animated ? 0.5 : 0.0, animations: {
             self.toastView.superview?.layoutIfNeeded()
         }) { _ in
-            self.toastView.toastViewLabel.text = ""
+            //self.toastView.toastViewLabel.text = ""
         }
     }
 }

@@ -63,6 +63,10 @@ final class SharedNote {
         note?.tags = tags
     }
     
+    func assets(set assets: [String: String]) {
+        note?.assets = assets
+    }
+    
     func create(with someNote: Note?) {
         note = someNote ?? Note()
     }

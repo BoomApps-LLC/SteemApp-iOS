@@ -58,10 +58,10 @@ class LoginViewController: UIViewController {
     
     private func configure() {
         usernameTxtField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 58))
-        usernameTxtField.leftViewMode = UITextFieldViewMode.always
+        usernameTxtField.leftViewMode = UITextField.ViewMode.always
         
         passwordTxtField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 58))
-        passwordTxtField.leftViewMode = UITextFieldViewMode.always
+        passwordTxtField.leftViewMode = UITextField.ViewMode.always
         
         let qrreader = UIButton(type: .custom)
         qrreader.setImage(#imageLiteral(resourceName: "qr_reader"), for: .normal)
@@ -69,15 +69,15 @@ class LoginViewController: UIViewController {
         qrreader.addTarget(self, action: #selector(scanAction(_:)), for: .touchUpInside)
         
         passwordTxtField.rightView = qrreader
-        passwordTxtField.rightViewMode = UITextFieldViewMode.always
+        passwordTxtField.rightViewMode = UITextField.ViewMode.always
         
         usernameTxtField.delegate = self
         passwordTxtField.delegate = self
         
         self.passwordTxtField.isSecureTextEntry = false
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @IBAction func loginActionHandler(_ sender: Any) {
@@ -107,12 +107,12 @@ class LoginViewController: UIViewController {
         guard let keyboardFrameEnd = notification.userInfo?["UIKeyboardFrameEndUserInfoKey"] as? CGRect else { return }
         let keyboardHeight = keyboardFrameEnd.size.height
         
-        scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardHeight, 0.0)
+        scrollView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardHeight, right: 0.0)
         scrollView.contentOffset = CGPoint(x: 0.0, y: min(121.0, keyboardHeight))
     }
     
     @objc private func keyboardWillHide(_ notification: NSNotification) {
-        scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+        scrollView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     }
     
     private func check() {

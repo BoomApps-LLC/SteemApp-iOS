@@ -25,7 +25,7 @@ class TagsViewController: UIViewController {
         super.viewDidLoad()
 
         tagTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 58))
-        tagTextField.leftViewMode = UITextFieldViewMode.always
+        tagTextField.leftViewMode = UITextField.ViewMode.always
         tagTextField.delegate = self
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))

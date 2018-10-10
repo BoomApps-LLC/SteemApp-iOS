@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var subsideryWebViewContainer: UIView!
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let rootContainerViewController = RootViewController(rootViewControllerDelegate: self)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = UIColor.white
         navigationBarAppearace.barTintColor = UIColor(rgb: 0x894DEB)
-        navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         setupAnalytics(application: application, launchOptions: launchOptions)
         
@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
 
         return handled
@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate {
-    private func setupAnalytics(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+    private func setupAnalytics(application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 }

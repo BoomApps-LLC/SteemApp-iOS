@@ -107,7 +107,7 @@ extension RootViewController: InterfaceCoordinator {
     }
     
     func logedOut() {
-        if let topViewController = self.childViewControllers.last as? TabsViewController {
+        if let topViewController = self.children.last as? TabsViewController {
             let loginViewController = LoginViewController(interfaceCoordinator: self)
             self.cycle(from: topViewController, to: loginViewController)
             self.tabsViewController = nil
@@ -116,7 +116,7 @@ extension RootViewController: InterfaceCoordinator {
     }
     
     func logedIn() {
-        if let topViewController = self.childViewControllers.last as? LoginViewController {
+        if let topViewController = self.children.last as? LoginViewController {
             configureTabsViewController()
             cycle(from: topViewController, to: self.tabsViewController!)
             tabsViewController?.setup(with: self)
@@ -223,27 +223,27 @@ extension RootViewController: Navigatable {
     }
     
     func cycle(from oldViewController: UIViewController, to newViewController: UIViewController) {
-        oldViewController.willMove(toParentViewController: nil)
-        self.addChildViewController(newViewController)
+        oldViewController.willMove(toParent: nil)
+        self.addChild(newViewController)
         
         self.transition(from: oldViewController,
                         to: newViewController,
                         duration: 1.5,
-                        options: UIViewAnimationOptions.allowAnimatedContent,
+                        options: UIView.AnimationOptions.allowAnimatedContent,
                         animations: {
                             
                             //self.view.layoutIfNeeded()
         }) { _ in
             newViewController.view.flipToBorder()
-            oldViewController.removeFromParentViewController()
-            newViewController.didMove(toParentViewController: self)
+            oldViewController.removeFromParent()
+            newViewController.didMove(toParent: self)
         }
     }
     
     private func removeViewController(_ viewController: UIViewController) {
-        viewController.willMove(toParentViewController: nil)
+        viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
-        viewController.removeFromParentViewController()
+        viewController.removeFromParent()
     }
 }
 
@@ -267,11 +267,11 @@ extension RootViewController {
     private func loginInterfaceFlow() {
         let loginViewController = LoginViewController(interfaceCoordinator: self)
         
-        self.addChildViewController(loginViewController)
+        self.addChild(loginViewController)
         self.view.addSubview(loginViewController.view)
         
         loginViewController.view.flipToBorder()
-        loginViewController.didMove(toParentViewController: self)
+        loginViewController.didMove(toParent: self)
         
         setButtons(hidden: true)
     }

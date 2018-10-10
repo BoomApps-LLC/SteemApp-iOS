@@ -37,7 +37,7 @@ class WebContentViewController: UIViewController, WKUIDelegate {
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
         
-        let rbi = UIBarButtonItem(image: #imageLiteral(resourceName: "close_button_white"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(close(_:)))
+        let rbi = UIBarButtonItem(image: #imageLiteral(resourceName: "close_button_white"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(close(_:)))
         navigationItem.rightBarButtonItem = rbi
         title = prefferedTitle
     }

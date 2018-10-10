@@ -76,7 +76,7 @@ class FeedViewCell: UICollectionViewCell {
         let constraintSize = CGSize(width: width, height: .greatestFiniteMagnitude)
         let boundingBox = txt.boundingRect(with: constraintSize,
                                             options: .usesLineFragmentOrigin,
-                                            attributes: [NSAttributedStringKey.font: font],
+                                            attributes: [NSAttributedString.Key.font: font],
                                             context: nil)
         
         return ceil(boundingBox.height)

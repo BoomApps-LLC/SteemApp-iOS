@@ -64,11 +64,11 @@ class TabsViewController: UITabBarController {
         //let viewControllers = [startingViewController]
         //self.setViewControllers(viewControllers, direction: .forward, animated: false, completion: {done in })
         
-        containerController.addChildViewController(self)
+        containerController.addChild(self)
         containerController.view.insertSubview(pageView, at: 0)
         pageView.flipToBorder()
         
-        self.didMove(toParentViewController: rootViewController)
+        self.didMove(toParent: rootViewController)
     }
     
     private func viewController(atIndex index: Int) -> UIViewController? {

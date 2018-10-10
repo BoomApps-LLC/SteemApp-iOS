@@ -33,10 +33,10 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDelegate {
 
         self.pageViewController!.dataSource = self.modelController
 
-        self.addChildViewController(self.pageViewController!)
+        self.addChild(self.pageViewController!)
         self.view.insertSubview(self.pageViewController!.view, at: 0)
         self.pageViewController!.view.flipToBorder()
-        self.pageViewController!.didMove(toParentViewController: self)
+        self.pageViewController!.didMove(toParent: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,7 +89,7 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDelegate {
 
     // MARK: - UIPageViewController delegate methods
 
-    func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewControllerSpineLocation {
+    private func pageViewController(_ pageViewController: UIPageViewController, spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewController.SpineLocation {
         if (orientation == .portrait) || (orientation == .portraitUpsideDown) || (UIDevice.current.userInterfaceIdiom == .phone) {
             // In portrait orientation or on iPhone: Set the spine position to "min" and the page view controller's view controllers array to contain just one view controller. Setting the spine position to 'UIPageViewControllerSpineLocationMid' in landscape orientation sets the doubleSided property to true, so set it to false here.
             let currentViewController = self.pageViewController!.viewControllers![0]
@@ -120,7 +120,7 @@ class OnboardingViewController: UIViewController, UIPageViewControllerDelegate {
     
     func slideToPage(index: Int, completion: (() -> Void)?) {
         if let vc = self.modelController.viewControllerAtIndex(index, storyboard: self.storyboard!) {
-            let direction: UIPageViewControllerNavigationDirection = .forward
+            let direction: UIPageViewController.NavigationDirection = .forward
             self.pageViewController?.setViewControllers([vc], direction: direction, animated: true, completion: { (complete) -> Void in
                 completion?()
             })

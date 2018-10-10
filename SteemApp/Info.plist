@@ -27,8 +27,6 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>2</string>
-	<key>FacebookAppID</key>
-	<string>299747247235471</string>
 	<key>FacebookDisplayName</key>
 	<string>SteemApp</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
